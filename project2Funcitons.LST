@@ -1,0 +1,42 @@
+C51 COMPILER V6.02  PROJECT2FUNCITONS                                                      11/18/2014 16:10:28 PAGE 1   
+
+
+C51 COMPILER V6.02, COMPILATION OF MODULE PROJECT2FUNCITONS
+OBJECT MODULE PLACED IN .\project2Funcitons.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE .\project2Funcitons.c DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          #include "project2.h"
+   2          #include <reg932.h>
+   3          
+   4          void transmit(char msg[], int size)
+   5          {
+   6   1        int i = 0;
+   7   1        EA = 1;
+   8   1      
+   9   1        uart_init();
+  10   1      
+  11   1        for(i = 0; i < size; i++)
+  12   1        {
+  13   2          uart_transmit(msg[i]);
+  14   2        }
+  15   1        uart_transmit('\0');
+  16   1        EA = 0;
+  17   1      
+  18   1        return;
+  19   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     79    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       7
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

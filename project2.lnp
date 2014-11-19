@@ -1,0 +1,6 @@
+"Project2Code.obj",
+"project2Funcitons.obj",
+"uart.obj" 
+TO "project2" 
+DISABLEWARNING (15, 16) 
+CODE( 0X0000-0X0FFF )
