@@ -27,7 +27,6 @@ sbit SW9 = P2^2;
 void test() interrupt 2
 {
   transmit("interrupt", 9);
-
   return;
 }
 
