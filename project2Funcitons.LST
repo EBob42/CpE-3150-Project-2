@@ -1,11 +1,11 @@
-C51 COMPILER V6.02  PROJECT2FUNCITONS                                                      11/18/2014 16:10:28 PAGE 1   
+C51 COMPILER V9.53.0.0   PROJECT2FUNCITONS                                                 11/28/2014 11:14:50 PAGE 1   
 
 
-C51 COMPILER V6.02, COMPILATION OF MODULE PROJECT2FUNCITONS
-OBJECT MODULE PLACED IN .\project2Funcitons.OBJ
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE .\project2Funcitons.c DEBUG OBJECTEXTEND
+C51 COMPILER V9.53.0.0, COMPILATION OF MODULE PROJECT2FUNCITONS
+OBJECT MODULE PLACED IN project2Funcitons.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE project2Funcitons.c OPTIMIZE(8,SPEED) DEBUG OBJECTEXTEND TABS(2)
 
-stmt level    source
+line level    source
 
    1          #include "project2.h"
    2          #include <reg932.h>

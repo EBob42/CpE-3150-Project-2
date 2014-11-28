@@ -1,5 +1,3 @@
-#include <reg932.h>
-#include "uart.h"
 #include "project2.h"
 
 void test() interrupt 2

@@ -1,11 +1,11 @@
-C51 COMPILER V6.02  UART                                                                   11/18/2014 16:43:04 PAGE 1   
+C51 COMPILER V9.53.0.0   UART                                                              11/28/2014 11:14:50 PAGE 1   
 
 
-C51 COMPILER V6.02, COMPILATION OF MODULE UART
-OBJECT MODULE PLACED IN .\uart.OBJ
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE .\uart.c DEBUG OBJECTEXTEND
+C51 COMPILER V9.53.0.0, COMPILATION OF MODULE UART
+OBJECT MODULE PLACED IN uart.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE uart.c OPTIMIZE(8,SPEED) DEBUG OBJECTEXTEND TABS(2)
 
-stmt level    source
+line level    source
 
    1          /***********************************************************************
    2          MODULE:    UART
@@ -62,7 +62,7 @@ stmt level    source
   53   1        BRGCON = 0x00;
   54   1        BRGR1 = BRG_Val>>8;
   55   1        BRGR0 = (unsigned char)(BRG_Val&0xff);
-C51 COMPILER V6.02  UART                                                                   11/18/2014 16:43:04 PAGE 2   
+C51 COMPILER V9.53.0.0   UART                                                              11/28/2014 11:14:50 PAGE 2   
 
   56   1        BRGCON = 0x03;
   57   1      
@@ -126,7 +126,7 @@ stmt level    source
  115          CAUTION: uart_init must be called first
  116          ************************************************************************/
  117          unsigned char uart_get(void)
-C51 COMPILER V6.02  UART                                                                   11/18/2014 16:43:04 PAGE 3   
+C51 COMPILER V9.53.0.0   UART                                                              11/28/2014 11:14:50 PAGE 3   
 
  118          {
  119   1        return SBUF;
@@ -135,7 +135,7 @@ stmt level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     85    ----
+   CODE SIZE        =     84    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
