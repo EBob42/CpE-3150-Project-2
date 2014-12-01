@@ -20,7 +20,19 @@ int main()
   transmit("song 1", 6);
   transmit("song 2", 6);
 
-  while(1);
+  while(1)
+{
+    switch mode
+    {
+      case 0:
+        mode1(mode);
 
+      case 1:
+        mode2(mode);
+
+      case 2:
+        mode3(mode);
+    }
+  }
   return 0;
 }
