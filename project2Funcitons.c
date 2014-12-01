@@ -17,3 +17,67 @@ void transmit(char msg[], int size)
 
   return;
 }
+
+void mode1(int & mode)  //plays random sound when button is pressed
+{
+  LED9 = 0;
+  transmit(mode1, 5);
+
+  while(sw9)
+  {
+    if(sw1)  //500hz sound
+    {
+      TMOD = 0x01;
+      TL0 = 0xCD;
+      TH0 = 0xF8;
+      TR0 = 1;
+
+      if(TF0)
+      {
+        TR0 = 0;
+        TF0 = 0;
+        SPK = ~SPK;
+      }
+
+    }
+
+    else if(sw2) //4000hz sound
+    {
+      TMOD = 0x01;
+      TL0 = 0x1A;
+      TH0 = 0xFF;
+      TR0 = 1;
+
+      if(TF0)
+      {
+        TR0 = 0;
+        TF0 = 0;
+        SPK = ~SPK;
+      }
+
+    }
+
+    else if(sw3) //10000hz sound
+    {
+      TMOD = 0x01;
+      TL0 = 0xA4;
+      TH0 = 0xFF;
+      TR0 = 1;
+
+      if(TF0)
+      {
+        TR0 = 0;
+        TF0 = 0;
+        SPK = ~SPK;
+      }
+    }
+
+    else if(sw9)
+    {
+      mode++;
+      break;
+    }
+  }
+
+  return;
+}
