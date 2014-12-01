@@ -27,5 +27,8 @@ sbit SW8 = P0^0;
 sbit SW9 = P2^2;
 
 void transmit(char msg[], int size);
+void mode1(int & mode);
+void mode2(int & mode);
+void mode3(int & mode);
 
 #endif
