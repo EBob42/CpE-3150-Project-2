@@ -77,7 +77,7 @@ int mode2(int mode)
 	return mode + 1;
 }
 
-
+//TODO: Decide if we need a 3rd mode
 int mode3(int mode)
 {
 	return mode + 1;

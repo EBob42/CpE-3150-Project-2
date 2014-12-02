@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        12/02/2014  14:59:21  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/02/2014  15:08:58  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -59,7 +59,7 @@ LINK MAP OF MODULE:  project2 (PROJECT2CODE)
             CODE    0DEFH     0018H     UNIT         ?CO?PROJECT2CODE
             CODE    0E07H     000DH     UNIT         ?PR?UART_ISR?UART
             CODE    0E14H     000CH     UNIT         ?PR?PLAY_SMALL_DELAY?MUSIC
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  14:59:21  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  15:08:58  PAGE 2
 
 
             CODE    0E20H     000CH     UNIT         ?C_C51STARTUP
@@ -119,7 +119,7 @@ SEGMENT                                   DATA_GROUP
 
 SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
 
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  14:59:21  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  15:08:58  PAGE 3
 
 
   VALUE           TYPE          NAME
@@ -156,30 +156,30 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   -------         DO            
   D:000FH         SYMBOL        mode
   -------         ENDDO         
-  C:0C6BH         LINE#         9
-  C:0C6BH         LINE#         10
-  C:0C6BH         LINE#         11
-  C:0C70H         LINE#         12
-  C:0C72H         LINE#         13
-  C:0C74H         LINE#         14
-  C:0C76H         LINE#         16
-  C:0C78H         LINE#         17
-  C:0C7AH         LINE#         18
-  C:0C7CH         LINE#         20
-  C:0C88H         LINE#         21
-  C:0C95H         LINE#         23
-  C:0C95H         LINE#         24
-  C:0C95H         LINE#         25
-  C:0CA0H         LINE#         26
-  C:0CA7H         LINE#         27
-  C:0CAEH         LINE#         28
-  C:0CB3H         LINE#         46
+  C:0C6BH         LINE#         13
+  C:0C6BH         LINE#         14
+  C:0C6BH         LINE#         15
+  C:0C70H         LINE#         16
+  C:0C72H         LINE#         17
+  C:0C74H         LINE#         18
+  C:0C76H         LINE#         20
+  C:0C78H         LINE#         21
+  C:0C7AH         LINE#         22
+  C:0C7CH         LINE#         24
+  C:0C88H         LINE#         25
+  C:0C95H         LINE#         27
+  C:0C95H         LINE#         28
+  C:0C95H         LINE#         29
+  C:0CA0H         LINE#         30
+  C:0CA7H         LINE#         31
+  C:0CAEH         LINE#         32
+  C:0CB3H         LINE#         50
   -------         ENDPROC       MAIN
   -------         ENDMOD        PROJECT2CODE
 
   -------         MODULE        UART
   C:0000H         SYMBOL        _ICE_DUMMY_
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  14:59:21  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  15:08:58  PAGE 4
 
 
   D:0091H         PUBLIC        P1M1
@@ -239,7 +239,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   C:0DC0H         LINE#         71
   C:0DC2H         LINE#         73
   -------         ENDPROC       UART_INIT
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  14:59:21  PAGE 5
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  15:08:58  PAGE 5
 
 
   -------         PROC          UART_ISR
@@ -299,7 +299,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   C:0AEEH         PUBLIC        _playSong
   B:0088H.4       PUBLIC        TR0
   D:00D8H         PUBLIC        I2CON
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  14:59:21  PAGE 6
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  15:08:58  PAGE 6
 
 
   C:0AE3H         PUBLIC        poke_dur
@@ -359,7 +359,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   -------         PROC          _PLAY_NOTE
   D:0002H         SYMBOL        hz
   D:0005H         SYMBOL        dur
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  14:59:21  PAGE 7
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  15:08:58  PAGE 7
 
 
   -------         DO            
@@ -419,7 +419,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   D:00B8H         PUBLIC        IP0
   D:00C8H         PUBLIC        TCR20
   C:0C1FH         PUBLIC        _mode1
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  14:59:21  PAGE 8
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  15:08:58  PAGE 8
 
 
   C:0DC3H         PUBLIC        _mode2
@@ -479,7 +479,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   -------         ENDPROC       _MODE1
   -------         PROC          _MODE2
   D:0011H         SYMBOL        mode
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  14:59:21  PAGE 9
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  15:08:58  PAGE 9
 
 
   -------         DO            
@@ -539,7 +539,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   C:0908H         PUBLIC        ?C?ULDIV
   -------         ENDMOD        ?C?ULDIV
 
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  14:59:21  PAGE 10
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  15:08:58  PAGE 10
 
 
 ******************************************************************************

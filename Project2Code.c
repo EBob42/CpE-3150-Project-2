@@ -6,6 +6,10 @@ void test() interrupt 2
   return;
 }
 
+
+//TODO: Come up with the extra stuff we want to add
+//			(each person decide stuff, we can probably
+//			work together to make it happen).
 void main()
 {
   int mode = 0;
