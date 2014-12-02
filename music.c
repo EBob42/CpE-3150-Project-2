@@ -44,6 +44,7 @@ bool play_song(unsigned int hz[], unsigned char dur[], unsigned char length)
 	bool x;
 	for (i = 0; i < length; ++i)
 	{
+		play_small_delay();
 		x = play_note(hz[i], dur[i]);
 		if (x == false)
 			return false;
@@ -80,4 +81,12 @@ bool play_note(unsigned int hz, unsigned char dur)
 		SPK = ~SPK;
 	}
 	return true;
+}
+
+void play_small_delay()
+{
+	TMOD = TMOD & 0xf0;
+	TMOD = TMOD | 0x02;
+	TH0 = 0x00;
+	TR0 = 1;
 }

@@ -40,4 +40,6 @@ bool play_song(unsigned int hz[], unsigned char dur[], unsigned char notes);
 
 bool play_note(unsigned int hz, unsigned char dur);
 
+void play_small_delay();
+
 #endif
