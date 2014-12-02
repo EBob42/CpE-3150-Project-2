@@ -22,6 +22,8 @@ void transmit(char msg[], int size)
 //			something more musical is desired.
 //			Also, check the condition on this loop, determine how to
 //			make sure we can change mode properly and what-not
+//			And be sure of active high or low buttons, make sure 
+//			if statements reflect that properly
 
 int mode1(int mode)  //plays random sound when button is pressed
 {

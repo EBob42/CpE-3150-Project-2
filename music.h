@@ -32,10 +32,12 @@
 
 typedef enum {STAR, SORC, POKE} Song;
 
-void playSong(Song s);
+typedef enum {false, true} bool;
 
-void play_song(unsigned int hz[], unsigned char dur[], unsigned char notes);
+bool playSong(Song s);
 
-void play_note(unsigned int hz, unsigned char dur);
+bool play_song(unsigned int hz[], unsigned char dur[], unsigned char notes);
+
+bool play_note(unsigned int hz, unsigned char dur);
 
 #endif

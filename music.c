@@ -12,35 +12,40 @@ code unsigned char poke_dur[1] = {Q};
 	
 code unsigned char notes[3] = {42, 57, 1};
 
-void playSong(Song s)
+bool playSong(Song s)
 {
+	bool x = true;
 	switch (s)
 	{
 		case STAR:
-			play_song(star_hz, star_dur, notes[1]);
+			x = play_song(star_hz, star_dur, notes[1]);
 			break;
 			
 		case SORC:
-			play_song(sorc_hz, sorc_dur, notes[1]);
+			x = play_song(sorc_hz, sorc_dur, notes[1]);
 			break;
 			
 		case POKE:
-			play_song(poke_hz, poke_dur, notes[2]);
+			x = play_song(poke_hz, poke_dur, notes[2]);
 			break;
 	}
+	return x;
 }
 
-void play_song(unsigned int hz[], unsigned char dur[], unsigned char length)
+bool play_song(unsigned int hz[], unsigned char dur[], unsigned char length)
 {
 	unsigned char i;
-	
+	bool x;
 	for (i = 0; i < length; ++i)
 	{
-		play_note(hz[i], dur[i]);
+		x = play_note(hz[i], dur[i]);
+		if (x == false)
+			return false;
 	}
+	return true;
 }
 
-void play_note(unsigned int hz, unsigned char dur)
+bool play_note(unsigned int hz, unsigned char dur)
 {
 	unsigned int i, time;
 	unsigned char high, low;
@@ -58,9 +63,15 @@ void play_note(unsigned int hz, unsigned char dur)
 		TH0 = high;
 		TL0 = low;
 		TR0 = 1;
-		while (TF0 == 0);
+		while (TF0 == 0)
+		{
+			//TODO: Verify if this button choice works
+			if(SW9 == 0)
+				return false;
+		}
 		TR0 = 0;
 		TF0 = 0;
 		SPK = ~SPK;
 	}
+	return true;
 }
