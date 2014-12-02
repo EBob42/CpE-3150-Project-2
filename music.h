@@ -11,24 +11,24 @@
 #define S3 2
 
 // Frequencies
-#define F5 698
-#define BF5 932
-#define F6 1397
-#define EF6 1245
-#define D6 1175
-#define C6 1047
-#define BF6 1865
-#define C7 2093
-#define A6 1760
-
 #define C5 523
 #define D5 587
 #define E5 659
-#define AF5 880
+#define F5 698
 #define G5 784
+#define AF5 880
+#define BF5 932
 #define B5 988
+#define C6 1047
+#define D6 1175
 #define E6 1318
+#define EF6 1245
+#define F6 1397
 #define G6 1568
+#define A6 1760
+#define BF6 1865
+#define C7 2093
+
 
 typedef enum {STAR, SORC, POKE} Song;
 
