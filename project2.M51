@@ -1,8 +1,8 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        11/30/2014  09:48:49  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/02/2014  10:05:37  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
-C:\KEIL_V5\C51\BIN\BL51.EXE Project2Code.obj, project2Funcitons.obj, uart.obj, music.obj TO project2 DISABLEWARNING (15,
+C:\KEIL_V5\C51\BIN\BL51.EXE Project2Code.obj, uart.obj, music.obj, project2Functions.obj TO project2 DISABLEWARNING (15,
 >>  16) CODE (0X0000-0X0FFF)
 
 
@@ -11,9 +11,9 @@ MEMORY MODEL: SMALL
 
 INPUT MODULES INCLUDED:
   Project2Code.obj (PROJECT2CODE)
-  project2Funcitons.obj (PROJECT2FUNCITONS)
   uart.obj (UART)
   music.obj (MUSIC)
+  project2Functions.obj (PROJECT2FUNCTIONS)
   C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
   C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
   C:\KEIL_V5\C51\LIB\C51S.LIB (?C?IMUL)
@@ -31,12 +31,13 @@ LINK MAP OF MODULE:  project2 (PROJECT2CODE)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     0010H     UNIT         _DATA_GROUP_
-            DATA    0018H     0008H     UNIT         ?DT?_PLAY_SONG?MUSIC
+            DATA    0008H     0012H     UNIT         _DATA_GROUP_
+            DATA    001AH     0002H     UNIT         ?DT?_PLAY_NOTE?MUSIC
+                    001CH     0004H                  *** GAP ***
             BIT     0020H.0   0000H.1   UNIT         ?BI?UART
                     0020H.1   0000H.7                *** GAP ***
-            DATA    0021H     0002H     UNIT         ?DT?_PLAY_NOTE?MUSIC
-            IDATA   0023H     0001H     UNIT         ?STACK
+            DATA    0021H     0008H     UNIT         ?DT?_PLAY_SONG?MUSIC
+            IDATA   0029H     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
@@ -46,23 +47,26 @@ LINK MAP OF MODULE:  project2 (PROJECT2CODE)
             CODE    0023H     0003H     ABSOLUTE     
                     0026H     07DAH                  *** GAP ***
             CODE    0800H     019AH     UNIT         ?C?LIB_CODE
-            CODE    099AH     0087H     UNIT         ?CO?MUSIC
-            CODE    0A21H     0058H     UNIT         ?PR?_PLAY_NOTE?MUSIC
-            CODE    0A79H     0055H     UNIT         ?PR?_PLAYSONG?MUSIC
-            CODE    0ACEH     004FH     UNIT         ?PR?_TRANSMIT?PROJECT2FUNCITONS
-            CODE    0B1DH     0045H     UNIT         ?PR?TEST?PROJECT2CODE
-            CODE    0B62H     0044H     UNIT         ?C?LDIV
-            CODE    0BA6H     003FH     UNIT         ?PR?_PLAY_SONG?MUSIC
-            CODE    0BE5H     003CH     UNIT         ?PR?UART_INIT?UART
-            CODE    0C21H     002CH     UNIT         ?PR?MAIN?PROJECT2CODE
-            CODE    0C4DH     0018H     UNIT         ?CO?PROJECT2CODE
-            CODE    0C65H     000DH     UNIT         ?PR?UART_ISR?UART
-            CODE    0C72H     000CH     UNIT         ?C_C51STARTUP
-            CODE    0C7EH     0008H     UNIT         ?PR?_UART_TRANSMIT?UART
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/30/2014  09:48:49  PAGE 2
+            CODE    099AH     012FH     UNIT         ?CO?MUSIC
+            CODE    0AC9H     0065H     UNIT         ?PR?_MODE1?PROJECT2FUNCTIONS
+            CODE    0B2EH     005DH     UNIT         ?PR?MAIN?PROJECT2CODE
+            CODE    0B8BH     0058H     UNIT         ?PR?_PLAY_NOTE?MUSIC
+            CODE    0BE3H     0055H     UNIT         ?PR?_PLAYSONG?MUSIC
+            CODE    0C38H     004FH     UNIT         ?PR?_TRANSMIT?PROJECT2FUNCTIONS
+            CODE    0C87H     0045H     UNIT         ?PR?TEST?PROJECT2CODE
+            CODE    0CCCH     0044H     UNIT         ?C?LDIV
+            CODE    0D10H     003FH     UNIT         ?PR?_PLAY_SONG?MUSIC
+            CODE    0D4FH     003CH     UNIT         ?PR?UART_INIT?UART
+            CODE    0D8BH     0018H     UNIT         ?CO?PROJECT2CODE
+            CODE    0DA3H     000DH     UNIT         ?PR?UART_ISR?UART
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  10:05:37  PAGE 2
 
 
-            CODE    0C86H     0003H     UNIT         ?PR?UART_GET?UART
+            CODE    0DB0H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0DBCH     0008H     UNIT         ?PR?_UART_TRANSMIT?UART
+            CODE    0DC4H     0003H     UNIT         ?PR?UART_GET?UART
+            CODE    0DC7H     0001H     UNIT         ?PR?_MODE2?PROJECT2FUNCTIONS
+            CODE    0DC8H     0001H     UNIT         ?PR?_MODE3?PROJECT2FUNCTIONS
 
 
 
@@ -74,9 +78,9 @@ SEGMENT                                   DATA_GROUP
 -------------------------------------------------------
 ?PR?TEST?PROJECT2CODE                   -----    -----
   +--> ?CO?PROJECT2CODE
-  +--> ?PR?_TRANSMIT?PROJECT2FUNCITONS
+  +--> ?PR?_TRANSMIT?PROJECT2FUNCTIONS
 
-?PR?_TRANSMIT?PROJECT2FUNCITONS         0011H    0007H
+?PR?_TRANSMIT?PROJECT2FUNCTIONS         0013H    0007H
   +--> ?PR?UART_INIT?UART
   +--> ?PR?_UART_TRANSMIT?UART
 
@@ -87,7 +91,13 @@ SEGMENT                                   DATA_GROUP
 
 ?PR?MAIN?PROJECT2CODE                   000FH    0002H
   +--> ?CO?PROJECT2CODE
-  +--> ?PR?_TRANSMIT?PROJECT2FUNCITONS
+  +--> ?PR?_TRANSMIT?PROJECT2FUNCTIONS
+  +--> ?PR?_MODE1?PROJECT2FUNCTIONS
+  +--> ?PR?_MODE2?PROJECT2FUNCTIONS
+  +--> ?PR?_MODE3?PROJECT2FUNCTIONS
+
+?PR?_MODE1?PROJECT2FUNCTIONS            0011H    0002H
+  +--> ?PR?_TRANSMIT?PROJECT2FUNCTIONS
 
 
 
@@ -108,10 +118,13 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   B:00A8H.7       PUBLIC        EA
   D:00A8H         PUBLIC        IEN0
   D:00E8H         PUBLIC        IEN1
-  C:0C21H         PUBLIC        main
+  C:0B2EH         PUBLIC        main
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  10:05:37  PAGE 3
+
+
   D:0098H         PUBLIC        SCON
   D:0088H         PUBLIC        TCON
-  C:0B1DH         PUBLIC        test
+  C:0C87H         PUBLIC        test
   D:00B8H         PUBLIC        IP0
   D:00C8H         PUBLIC        TCR20
   B:00A8H.0       PUBLIC        EX0
@@ -119,71 +132,39 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   D:00D8H         PUBLIC        I2CON
   D:00D0H         PUBLIC        PSW
   -------         PROC          TEST
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/30/2014  09:48:49  PAGE 3
-
-
-  C:0B1DH         LINE#         3
-  C:0B3AH         LINE#         5
-  C:0B47H         LINE#         7
+  C:0C87H         LINE#         3
+  C:0CA4H         LINE#         5
+  C:0CB1H         LINE#         7
   -------         ENDPROC       TEST
   -------         PROC          MAIN
   -------         DO            
   D:000FH         SYMBOL        mode
   -------         ENDDO         
-  C:0C21H         LINE#         9
-  C:0C21H         LINE#         10
-  C:0C21H         LINE#         11
-  C:0C26H         LINE#         12
-  C:0C28H         LINE#         13
-  C:0C2AH         LINE#         14
-  C:0C2CH         LINE#         16
-  C:0C2EH         LINE#         17
-  C:0C30H         LINE#         18
-  C:0C32H         LINE#         20
-  C:0C3EH         LINE#         21
-  C:0C4BH         LINE#         23
+  C:0B2EH         LINE#         9
+  C:0B2EH         LINE#         10
+  C:0B2EH         LINE#         11
+  C:0B33H         LINE#         12
+  C:0B35H         LINE#         13
+  C:0B37H         LINE#         14
+  C:0B39H         LINE#         16
+  C:0B3BH         LINE#         17
+  C:0B3DH         LINE#         18
+  C:0B3FH         LINE#         20
+  C:0B4BH         LINE#         21
+  C:0B58H         LINE#         23
+  C:0B58H         LINE#         24
+  C:0B58H         LINE#         25
+  C:0B68H         LINE#         26
+  C:0B68H         LINE#         27
+  C:0B68H         LINE#         28
+  C:0B73H         LINE#         30
+  C:0B73H         LINE#         31
+  C:0B7EH         LINE#         33
+  C:0B7EH         LINE#         34
+  C:0B89H         LINE#         35
+  C:0B89H         LINE#         36
   -------         ENDPROC       MAIN
   -------         ENDMOD        PROJECT2CODE
-
-  -------         MODULE        PROJECT2FUNCITONS
-  C:0000H         SYMBOL        _ICE_DUMMY_
-  D:0080H         PUBLIC        P0
-  D:0090H         PUBLIC        P1
-  D:00A0H         PUBLIC        P2
-  D:00B0H         PUBLIC        P3
-  B:00A8H.7       PUBLIC        EA
-  D:00A8H         PUBLIC        IEN0
-  D:00E8H         PUBLIC        IEN1
-  D:0098H         PUBLIC        SCON
-  D:0088H         PUBLIC        TCON
-  D:00B8H         PUBLIC        IP0
-  D:00C8H         PUBLIC        TCR20
-  D:00D8H         PUBLIC        I2CON
-  C:0ACEH         PUBLIC        _transmit
-  D:00D0H         PUBLIC        PSW
-  -------         PROC          _TRANSMIT
-  D:0011H         SYMBOL        msg
-  D:0014H         SYMBOL        size
-  -------         DO            
-  D:0016H         SYMBOL        i
-  -------         ENDDO         
-  C:0ACEH         LINE#         4
-  C:0AD8H         LINE#         5
-  C:0AD8H         LINE#         6
-  C:0ADDH         LINE#         7
-  C:0ADFH         LINE#         9
-  C:0AE2H         LINE#         11
-  C:0AF8H         LINE#         12
-  C:0AF8H         LINE#         13
-  C:0B0BH         LINE#         14
-  C:0B15H         LINE#         15
-  C:0B1AH         LINE#         16
-  C:0B1CH         LINE#         19
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/30/2014  09:48:49  PAGE 4
-
-
-  -------         ENDPROC       _TRANSMIT
-  -------         ENDMOD        PROJECT2FUNCITONS
 
   -------         MODULE        UART
   C:0000H         SYMBOL        _ICE_DUMMY_
@@ -197,7 +178,10 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   D:00E8H         PUBLIC        IEN1
   D:00BAH         PUBLIC        SSTAT
   D:00B7H         PUBLIC        IP0H
-  C:0C7EH         PUBLIC        _uart_transmit
+  C:0DBCH         PUBLIC        _uart_transmit
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  10:05:37  PAGE 4
+
+
   B:00A8H.4       PUBLIC        ES
   B:0098H.0       PUBLIC        RI
   B:0098H.1       PUBLIC        TI
@@ -209,71 +193,71 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   D:00BDH         PUBLIC        BRGCON
   D:00B8H         PUBLIC        IP0
   D:00C8H         PUBLIC        TCR20
-  C:0BE5H         PUBLIC        uart_init
+  C:0D4FH         PUBLIC        uart_init
   D:00D8H         PUBLIC        I2CON
   D:00BEH         PUBLIC        BRGR0
   D:00BFH         PUBLIC        BRGR1
-  C:0C86H         PUBLIC        uart_get
-  C:0C65H         PUBLIC        uart_isr
+  C:0DC4H         PUBLIC        uart_get
+  C:0DA3H         PUBLIC        uart_isr
   D:00A2H         PUBLIC        AUXR1
   D:00D0H         PUBLIC        PSW
   -------         PROC          UART_INIT
   -------         DO            
   D:0004H         SYMBOL        BRG_Val
   -------         ENDDO         
-  C:0BE5H         LINE#         31
-  C:0BE5H         LINE#         32
-  C:0BE5H         LINE#         36
-  C:0BE8H         LINE#         39
-  C:0BEBH         LINE#         41
-  C:0BEEH         LINE#         45
-  C:0BF1H         LINE#         48
-  C:0BF4H         LINE#         51
-  C:0BF6H         LINE#         52
-  C:0BFDH         LINE#         53
-  C:0C00H         LINE#         54
-  C:0C02H         LINE#         55
-  C:0C07H         LINE#         56
-  C:0C0AH         LINE#         59
-  C:0C0DH         LINE#         60
-  C:0C10H         LINE#         61
-  C:0C13H         LINE#         62
-  C:0C16H         LINE#         65
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/30/2014  09:48:49  PAGE 5
-
-
-  C:0C18H         LINE#         68
-  C:0C1BH         LINE#         69
-  C:0C1EH         LINE#         71
-  C:0C20H         LINE#         73
+  C:0D4FH         LINE#         31
+  C:0D4FH         LINE#         32
+  C:0D4FH         LINE#         36
+  C:0D52H         LINE#         39
+  C:0D55H         LINE#         41
+  C:0D58H         LINE#         45
+  C:0D5BH         LINE#         48
+  C:0D5EH         LINE#         51
+  C:0D60H         LINE#         52
+  C:0D67H         LINE#         53
+  C:0D6AH         LINE#         54
+  C:0D6CH         LINE#         55
+  C:0D71H         LINE#         56
+  C:0D74H         LINE#         59
+  C:0D77H         LINE#         60
+  C:0D7AH         LINE#         61
+  C:0D7DH         LINE#         62
+  C:0D80H         LINE#         65
+  C:0D82H         LINE#         68
+  C:0D85H         LINE#         69
+  C:0D88H         LINE#         71
+  C:0D8AH         LINE#         73
   -------         ENDPROC       UART_INIT
   -------         PROC          UART_ISR
-  C:0C65H         LINE#         81
-  C:0C65H         LINE#         83
-  C:0C68H         LINE#         84
-  C:0C68H         LINE#         86
-  C:0C6AH         LINE#         87
-  C:0C6AH         LINE#         89
-  C:0C6DH         LINE#         90
-  C:0C6DH         LINE#         92
-  C:0C6FH         LINE#         94
-  C:0C71H         LINE#         95
-  C:0C71H         LINE#         97
+  C:0DA3H         LINE#         81
+  C:0DA3H         LINE#         83
+  C:0DA6H         LINE#         84
+  C:0DA6H         LINE#         86
+  C:0DA8H         LINE#         87
+  C:0DA8H         LINE#         89
+  C:0DABH         LINE#         90
+  C:0DABH         LINE#         92
+  C:0DADH         LINE#         94
+  C:0DAFH         LINE#         95
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  10:05:37  PAGE 5
+
+
+  C:0DAFH         LINE#         97
   -------         ENDPROC       UART_ISR
   -------         PROC          _UART_TRANSMIT
   D:0007H         SYMBOL        value
-  C:0C7EH         LINE#         105
-  C:0C7EH         LINE#         106
-  C:0C7EH         LINE#         107
-  C:0C81H         LINE#         108
-  C:0C83H         LINE#         109
-  C:0C85H         LINE#         110
+  C:0DBCH         LINE#         105
+  C:0DBCH         LINE#         106
+  C:0DBCH         LINE#         107
+  C:0DBFH         LINE#         108
+  C:0DC1H         LINE#         109
+  C:0DC3H         LINE#         110
   -------         ENDPROC       _UART_TRANSMIT
   -------         PROC          UART_GET
-  C:0C86H         LINE#         117
-  C:0C86H         LINE#         118
-  C:0C86H         LINE#         119
-  C:0C88H         LINE#         120
+  C:0DC4H         LINE#         117
+  C:0DC4H         LINE#         118
+  C:0DC4H         LINE#         119
+  C:0DC6H         LINE#         120
   -------         ENDPROC       UART_GET
   -------         ENDMOD        UART
 
@@ -286,7 +270,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   D:00B0H         PUBLIC        P3
   D:00A8H         PUBLIC        IEN0
   D:00E8H         PUBLIC        IEN1
-  C:0A1EH         PUBLIC        notes
+  C:0AC6H         PUBLIC        notes
   D:0098H         PUBLIC        SCON
   D:0089H         PUBLIC        TMOD
   D:0088H         PUBLIC        TCON
@@ -295,87 +279,214 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   D:00C8H         PUBLIC        TCR20
   D:008CH         PUBLIC        TH0
   D:008AH         PUBLIC        TL0
-  C:0A21H         PUBLIC        _play_note
-  C:0BA6H         PUBLIC        _play_song
-  C:0A79H         PUBLIC        _playSong
+  C:0B8BH         PUBLIC        _play_note
+  C:0D10H         PUBLIC        _play_song
+  C:0BE3H         PUBLIC        _playSong
   B:0088H.4       PUBLIC        TR0
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/30/2014  09:48:49  PAGE 6
-
-
   D:00D8H         PUBLIC        I2CON
-  C:0A1DH         PUBLIC        poke_dur
-  C:0A1AH         PUBLIC        sorc_dur
+  C:0AC5H         PUBLIC        poke_dur
+  C:0A8AH         PUBLIC        sorc_dur
   C:09EEH         PUBLIC        star_dur
   B:0090H.7       PUBLIC        SPK
-  C:0A1BH         PUBLIC        poke_hz
+  C:0AC3H         PUBLIC        poke_hz
   D:00D0H         PUBLIC        PSW
   C:0A18H         PUBLIC        sorc_hz
   -------         PROC          _PLAYSONG
   D:0007H         SYMBOL        s
-  C:0A79H         LINE#         3
-  C:0A79H         LINE#         4
-  C:0A79H         LINE#         5
-  C:0A84H         LINE#         6
-  C:0A84H         LINE#         7
-  C:0A84H         LINE#         8
-  C:0A9AH         LINE#         9
-  C:0A9CH         LINE#         11
-  C:0A9CH         LINE#         12
-  C:0AB2H         LINE#         13
-  C:0AB4H         LINE#         15
-  C:0AB4H         LINE#         16
-  C:0ACDH         LINE#         17
-  C:0ACDH         LINE#         18
-  C:0ACDH         LINE#         19
+  C:0BE3H         LINE#         3
+  C:0BE3H         LINE#         4
+  C:0BE3H         LINE#         5
+  C:0BEEH         LINE#         6
+  C:0BEEH         LINE#         7
+  C:0BEEH         LINE#         8
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  10:05:37  PAGE 6
+
+
+  C:0C04H         LINE#         9
+  C:0C06H         LINE#         11
+  C:0C06H         LINE#         12
+  C:0C1CH         LINE#         13
+  C:0C1EH         LINE#         15
+  C:0C1EH         LINE#         16
+  C:0C37H         LINE#         17
+  C:0C37H         LINE#         18
+  C:0C37H         LINE#         19
   -------         ENDPROC       _PLAYSONG
   -------         PROC          _PLAY_SONG
-  D:0018H         SYMBOL        hz
-  D:001BH         SYMBOL        dur
-  D:001EH         SYMBOL        length
+  D:0021H         SYMBOL        hz
+  D:0024H         SYMBOL        dur
+  D:0027H         SYMBOL        length
   -------         DO            
-  D:001FH         SYMBOL        i
+  D:0028H         SYMBOL        i
   -------         ENDDO         
-  C:0BA6H         LINE#         21
-  C:0BACH         LINE#         22
-  C:0BACH         LINE#         25
-  C:0BB6H         LINE#         26
-  C:0BB6H         LINE#         27
-  C:0BE0H         LINE#         28
-  C:0BE4H         LINE#         29
+  C:0D10H         LINE#         21
+  C:0D16H         LINE#         22
+  C:0D16H         LINE#         25
+  C:0D20H         LINE#         26
+  C:0D20H         LINE#         27
+  C:0D4AH         LINE#         28
+  C:0D4EH         LINE#         29
   -------         ENDPROC       _PLAY_SONG
   -------         PROC          _PLAY_NOTE
   D:0002H         SYMBOL        hz
   D:0005H         SYMBOL        dur
   -------         DO            
   D:0004H         SYMBOL        i
-  D:0021H         SYMBOL        time
+  D:001AH         SYMBOL        time
   D:0007H         SYMBOL        high
   D:0006H         SYMBOL        low
   -------         ENDDO         
-  C:0A21H         LINE#         31
-  C:0A25H         LINE#         32
-  C:0A25H         LINE#         36
-  C:0A3BH         LINE#         37
-  C:0A4CH         LINE#         38
-  C:0A4EH         LINE#         39
-  C:0A50H         LINE#         41
-BL51 BANKED LINKER/LOCATER V6.22                                                      11/30/2014  09:48:49  PAGE 7
-
-
-  C:0A53H         LINE#         42
-  C:0A56H         LINE#         44
-  C:0A62H         LINE#         45
-  C:0A62H         LINE#         46
-  C:0A64H         LINE#         47
-  C:0A66H         LINE#         48
-  C:0A68H         LINE#         49
-  C:0A6BH         LINE#         50
-  C:0A6DH         LINE#         51
-  C:0A6FH         LINE#         52
-  C:0A71H         LINE#         53
-  C:0A78H         LINE#         54
+  C:0B8BH         LINE#         31
+  C:0B8FH         LINE#         32
+  C:0B8FH         LINE#         36
+  C:0BA5H         LINE#         37
+  C:0BB6H         LINE#         38
+  C:0BB8H         LINE#         39
+  C:0BBAH         LINE#         41
+  C:0BBDH         LINE#         42
+  C:0BC0H         LINE#         44
+  C:0BCCH         LINE#         45
+  C:0BCCH         LINE#         46
+  C:0BCEH         LINE#         47
+  C:0BD0H         LINE#         48
+  C:0BD2H         LINE#         49
+  C:0BD5H         LINE#         50
+  C:0BD7H         LINE#         51
+  C:0BD9H         LINE#         52
+  C:0BDBH         LINE#         53
+  C:0BE2H         LINE#         54
   -------         ENDPROC       _PLAY_NOTE
   -------         ENDMOD        MUSIC
+
+  -------         MODULE        PROJECT2FUNCTIONS
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  10:05:37  PAGE 7
+
+
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  D:00A8H         PUBLIC        IEN0
+  D:00E8H         PUBLIC        IEN1
+  B:00A0H.6       PUBLIC        LED9
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  D:00B8H         PUBLIC        IP0
+  B:0088H.5       PUBLIC        TF0
+  D:00C8H         PUBLIC        TCR20
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:0088H.4       PUBLIC        TR0
+  C:0AC9H         PUBLIC        _mode1
+  C:0DC7H         PUBLIC        _mode2
+  C:0DC8H         PUBLIC        _mode3
+  B:00A0H.0       PUBLIC        SW1
+  B:0080H.2       PUBLIC        SW2
+  D:00D8H         PUBLIC        I2CON
+  B:00A0H.1       PUBLIC        SW3
+  B:00A0H.2       PUBLIC        SW9
+  B:0090H.7       PUBLIC        SPK
+  C:0C38H         PUBLIC        _transmit
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _TRANSMIT
+  D:0013H         SYMBOL        msg
+  D:0016H         SYMBOL        size
+  -------         DO            
+  D:0018H         SYMBOL        i
+  -------         ENDDO         
+  C:0C38H         LINE#         4
+  C:0C42H         LINE#         5
+  C:0C42H         LINE#         6
+  C:0C47H         LINE#         7
+  C:0C49H         LINE#         9
+  C:0C4CH         LINE#         11
+  C:0C62H         LINE#         12
+  C:0C62H         LINE#         13
+  C:0C75H         LINE#         14
+  C:0C7FH         LINE#         15
+  C:0C84H         LINE#         16
+  C:0C86H         LINE#         19
+  -------         ENDPROC       _TRANSMIT
+  -------         PROC          _MODE1
+  D:0011H         SYMBOL        mode
+  C:0AC9H         LINE#         21
+  C:0ACDH         LINE#         22
+  C:0ACDH         LINE#         23
+  C:0ACFH         LINE#         24
+  C:0ADCH         LINE#         26
+  C:0ADFH         LINE#         27
+  C:0ADFH         LINE#         28
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  10:05:37  PAGE 8
+
+
+  C:0AE2H         LINE#         29
+  C:0AE2H         LINE#         30
+  C:0AE5H         LINE#         31
+  C:0AE8H         LINE#         32
+  C:0AEBH         LINE#         33
+  C:0AEDH         LINE#         35
+  C:0AF0H         LINE#         36
+  C:0AF0H         LINE#         37
+  C:0AF0H         LINE#         38
+  C:0AF0H         LINE#         39
+  C:0AF0H         LINE#         40
+  C:0AF0H         LINE#         42
+  C:0AF2H         LINE#         44
+  C:0AF5H         LINE#         45
+  C:0AF5H         LINE#         46
+  C:0AF8H         LINE#         47
+  C:0AFBH         LINE#         48
+  C:0AFEH         LINE#         49
+  C:0B00H         LINE#         51
+  C:0B03H         LINE#         52
+  C:0B03H         LINE#         53
+  C:0B03H         LINE#         54
+  C:0B03H         LINE#         55
+  C:0B03H         LINE#         56
+  C:0B03H         LINE#         58
+  C:0B05H         LINE#         60
+  C:0B08H         LINE#         61
+  C:0B08H         LINE#         62
+  C:0B0BH         LINE#         63
+  C:0B0EH         LINE#         64
+  C:0B11H         LINE#         65
+  C:0B13H         LINE#         67
+  C:0B16H         LINE#         68
+  C:0B16H         LINE#         69
+  C:0B18H         LINE#         70
+  C:0B1AH         LINE#         71
+  C:0B1CH         LINE#         72
+  C:0B1CH         LINE#         73
+  C:0B1EH         LINE#         75
+  C:0B21H         LINE#         76
+  C:0B21H         LINE#         77
+  C:0B29H         LINE#         78
+  C:0B29H         LINE#         79
+  C:0B29H         LINE#         80
+  C:0B29H         LINE#         82
+  C:0B2DH         LINE#         83
+  -------         ENDPROC       _MODE1
+  -------         PROC          _MODE2
+  D:0006H         SYMBOL        mode
+  C:0DC7H         LINE#         85
+  C:0DC7H         LINE#         86
+  C:0DC7H         LINE#         87
+  C:0DC7H         LINE#         88
+  -------         ENDPROC       _MODE2
+  -------         PROC          _MODE3
+  D:0006H         SYMBOL        mode
+  C:0DC8H         LINE#         91
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/02/2014  10:05:37  PAGE 9
+
+
+  C:0DC8H         LINE#         92
+  C:0DC8H         LINE#         93
+  C:0DC8H         LINE#         94
+  -------         ENDPROC       _MODE3
+  -------         ENDMOD        PROJECT2FUNCTIONS
 
   -------         MODULE        ?C?CLDOPTR
   C:0800H         PUBLIC        ?C?CLDOPTR
@@ -394,7 +505,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   -------         ENDMOD        ?C?ILDOPTR
 
   -------         MODULE        ?C?SLDIV
-  C:0B62H         PUBLIC        ?C?SLDIV
+  C:0CCCH         PUBLIC        ?C?SLDIV
   -------         ENDMOD        ?C?SLDIV
 
   -------         MODULE        ?C?ULDIV
@@ -402,8 +513,8 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   -------         ENDMOD        ?C?ULDIV
 
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 02A5H BYTE (33%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 03E5H BYTE (48%) *
 ******************************************************************************
 
-Program Size: data=35.1 xdata=0 code=1170
+Program Size: data=37.1 xdata=0 code=1490
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

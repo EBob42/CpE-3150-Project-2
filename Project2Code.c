@@ -6,7 +6,7 @@ void test() interrupt 2
   return;
 }
 
-int main()
+void main()
 {
   int mode = 0;
   P2M1 = 0;
@@ -21,18 +21,17 @@ int main()
   transmit("song 2", 6);
 
   while(1)
-{
-    switch mode
+  {
+    switch (mode)
     {
       case 0:
-        mode1(mode);
+        mode = mode1(mode);
 
       case 1:
-        mode2(mode);
+        mode = mode2(mode);
 
       case 2:
-        mode3(mode);
+        mode = mode3(mode);
     }
   }
-  return 0;
 }
