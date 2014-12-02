@@ -19,41 +19,80 @@ CPU DLL:         S8051.DLL V3.95.0.0
 Dialog DLL:      DP51.DLL V2.62.0.1 
 <h2>Project:</h2>
 C:\Users\EBob\Desktop\CpE 3150\CpE-3150-Project-2\project2.Uv2
-Project File Date:  11/28/2014
+Project File Date:  12/02/2014
 
 <h2>Output:</h2>
 Build target 'Target 1'
 compiling Project2Code.c...
+compiling music.c...
 compiling project2Functions.c...
 linking...
-Program Size: data=37.1 xdata=0 code=1490
+Program Size: data=35.1 xdata=0 code=1470
 creating hex file from "project2"...
 "project2" - 0 Error(s), 0 Warning(s).
-</pre>
-</body>
-</html>
-LE:  Project2Code.obj (PROJECT2CODE)
-*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
-    SYMBOL:  _MODE3
-    MODULE:  Project2Code.obj (PROJECT2CODE)
-*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
-    SYMBOL:  _MODE2
-    MODULE:  Project2Code.obj (PROJECT2CODE)
-    ADDRESS: 0B78H
-*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
-    SYMBOL:  _MODE3
-    MODULE:  Project2Code.obj (PROJECT2CODE)
-    ADDRESS: 0B83H
-Program Size: data=37.1 xdata=0 code=1488
-creating hex file from "project2"...
-"project2" - 0 Error(s), 5 Warning(s).
-2': undefined identifier
-project2Functions.c(60): error C202: 'sw3': undefined identifier
-project2Functions.c(75): error C202: 'sw9': undefined identifier
-project2Functions.c(77): error C202: 'mode': undefined identifier
-Target not created.
-s.c(44): error C202: 'sw2': undefined identifier
-project2Functions.c(60): error C202: 'sw3': undefined identifier
-project2Functions.c(75): error C202: 'sw9': undefined identifier
-project2Functions.c(77): error C202: 'mode': undefined identifier
+ PUBLIC DEFINITIONS
+    SYMBOL:  POKE_DUR
+    MODULE:  music.obj (MUSIC)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  POKE_HZ
+    MODULE:  music.obj (MUSIC)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  SORC_DUR
+    MODULE:  music.obj (MUSIC)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  SORC_HZ
+    MODULE:  music.obj (MUSIC)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  STAR_DUR
+    MODULE:  music.obj (MUSIC)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  STAR_HZ
+    MODULE:  music.obj (MUSIC)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  NOTES
+    MODULE:  project2Functions.obj (PROJECT2FUNCTIONS)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  POKE_DUR
+    MODULE:  project2Functions.obj (PROJECT2FUNCTIONS)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  POKE_HZ
+    MODULE:  project2Functions.obj (PROJECT2FUNCTIONS)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  SORC_DUR
+    MODULE:  project2Functions.obj (PROJECT2FUNCTIONS)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  SORC_HZ
+    MODULE:  project2Functions.obj (PROJECT2FUNCTIONS)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  STAR_DUR
+    MODULE:  project2Functions.obj (PROJECT2FUNCTIONS)
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  STAR_HZ
+    MODULE:  project2Functions.obj (PROJECT2FUNCTIONS)
+*** ERROR L107: ADDRESS SPACE OVERFLOW
+    SPACE:   CODE    
+    SEGMENT: ?C_C51STARTUP
+    LENGTH:  000CH
+*** ERROR L107: ADDRESS SPACE OVERFLOW
+    SPACE:   CODE    
+    SEGMENT: ?PR?_UART_TRANSMIT?UART
+    LENGTH:  0008H
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  _UART_TRANSMIT
+    SEGMENT: ?PR?_UART_TRANSMIT?UART
+*** ERROR L120: CONTENT BELONGS TO ERRONEOUS SEGMENT
+    SEGMENT: ?PR?_UART_TRANSMIT?UART
+    MODULE:  uart.obj (UART)
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  _UART_TRANSMIT
+    MODULE:  project2Functions.obj (PROJECT2FUNCTIONS)
+    ADDRESS: 0E8BH
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  _UART_TRANSMIT
+    MODULE:  project2Functions.obj (PROJECT2FUNCTIONS)
+    ADDRESS: 0E9AH
+*** ERROR L120: CONTENT BELONGS TO ERRONEOUS SEGMENT
+    SEGMENT: ?C_C51STARTUP
+    MODULE:  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+Program Size: data=35.1 xdata=0 code=2076
 Target not created.

@@ -2,6 +2,7 @@
 #define PROJECT_H
 
 #include "uart.h"
+#include "music.h"
 #include <reg932.h>
 
 sbit LED1 = P2^4;
