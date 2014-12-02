@@ -27,43 +27,56 @@ void transmit(char msg[], int size)
 
 int mode1(int mode)  //plays random sound when button is pressed
 {
+	bool x = true;
   LED9 = 0;
   transmit("Mode 1", 6);
 
-  while(SW9)
+  while(x == true)
   {
     if(SW1)  //500hz sound
     {
-			play_note(500, 1);
+			x = play_note(500, 1);
     }
 
     else if(SW2) //4000hz sound
     {
-      play_note(4000, 1);
+      x = play_note(4000, 1);
     }
 
     else if(SW3) //10000hz sound
     {
-      play_note(10000, 1);
-    }
-
-    else if(SW9)
-    {
-      mode++;
-      break;
+      x = play_note(10000, 1);
     }
   }
 
-  return mode;
+  return mode + 1;
 }
 
 int mode2(int mode)
 {
-	return mode;
+	bool x = true;
+	
+	while(x == true)
+	{
+		if(SW1 == 0)
+		{
+			x = playSong(STAR);
+		}
+		else if(SW2 == 0)
+		{
+			x = playSong(SORC);
+		}
+		else if (SW3 == 0)
+		{
+			x = playSong(POKE);
+		}
+	}
+	
+	return mode + 1;
 }
 
 
 int mode3(int mode)
 {
-	return mode;
+	return mode + 1;
 }

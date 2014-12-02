@@ -22,16 +22,26 @@ void main()
 
   while(1)
   {
-    switch (mode)
+		mode = mode1(mode);
+		mode = mode2(mode);
+		mode = mode3(mode);
+		mode = 0;
+    /*switch (mode)
     {
       case 0:
         mode = mode1(mode);
+				break;
 
       case 1:
         mode = mode2(mode);
+				break;
 
       case 2:
         mode = mode3(mode);
-    }
+				break;
+			
+			case 3:
+				mode = 0;
+    }*/
   }
 }
