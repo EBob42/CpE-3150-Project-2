@@ -16,7 +16,7 @@
 #define E5 659
 #define F5 698
 #define G5 784
-#define AF5 880
+#define AF5 830
 #define BF5 932
 #define B5 988
 #define C6 1047

@@ -24,28 +24,19 @@ void main()
   transmit("song 1", 6);
   transmit("song 2", 6);
 
+  //playSong(STAR);
+
   while(1)
   {
 		mode = mode1(mode);
+	    delay();
+
 		mode = mode2(mode);
+		delay();
+
 		mode = mode3(mode);
+		delay();
+
 		mode = 0;
-    /*switch (mode)
-    {
-      case 0:
-        mode = mode1(mode);
-				break;
-
-      case 1:
-        mode = mode2(mode);
-				break;
-
-      case 2:
-        mode = mode3(mode);
-				break;
-			
-			case 3:
-				mode = 0;
-    }*/
   }
 }

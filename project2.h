@@ -31,5 +31,6 @@ void transmit(char msg[], int size);
 int mode1(int mode);
 int mode2(int mode);
 int mode3(int mode);
+void delay();
 
 #endif

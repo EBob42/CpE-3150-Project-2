@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/02/2014 15:13:12 PAGE 1   
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/04/2014 22:28:03 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE PROJECT2FUNCTIONS
@@ -40,67 +40,101 @@ line level    source
   31          {
   32   1        bool x = true;
   33   1        LED9 = 0;
-  34   1        transmit("Mode 1", 6);
+  34   1        //transmit("Mode 1", 6);
   35   1      
   36   1        while(x == true)
   37   1        {
-  38   2          if(SW1)  //500hz sound
+  38   2          if(!SW1)  //500hz sound
   39   2          {
-  40   3            x = play_note(500, 1);
+  40   3          x = play_note(500, 1);
   41   3          }
   42   2      
-  43   2          else if(SW2) //4000hz sound
+  43   2          else if(!SW2) //4000hz sound
   44   2          {
   45   3            x = play_note(4000, 1);
   46   3          }
   47   2      
-  48   2          else if(SW3) //10000hz sound
+  48   2          else if(!SW3) //10000hz sound
   49   2          {
   50   3            x = play_note(10000, 1);
   51   3          }
-  52   2        }
-  53   1      
-  54   1        return mode + 1;
-  55   1      }
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/02/2014 15:13:12 PAGE 2   
+  52   2        else if (!SW9)
+  53   2        {
+  54   3          x = 0;
+  55   3        }
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/04/2014 22:28:03 PAGE 2   
 
-  56          
-  57          int mode2(int mode)
-  58          {
-  59   1        bool x = true;
-  60   1        
-  61   1        while(x == true)
-  62   1        {
-  63   2          if(SW1 == 0)
-  64   2          {
-  65   3            x = playSong(STAR);
-  66   3          }
-  67   2          else if(SW2 == 0)
-  68   2          {
-  69   3            x = playSong(SORC);
-  70   3          }
-  71   2          else if (SW3 == 0)
-  72   2          {
-  73   3            x = playSong(POKE);
-  74   3          }
-  75   2        }
-  76   1        
-  77   1        return mode + 1;
-  78   1      }
-  79          
-  80          //TODO: Decide if we need a 3rd mode
-  81          int mode3(int mode)
-  82          {
-  83   1        return mode + 1;
-  84   1      }
+  56   2        }
+  57   1      
+  58   1        LED9 = 1;
+  59   1      
+  60   1        return mode + 1;
+  61   1      }
+  62          
+  63          int mode2(int mode)
+  64          {
+  65   1        bool x = true;
+  66   1        LED8 = 0;
+  67   1        
+  68   1        while(x == true)
+  69   1        {
+  70   2          if(SW1 == 0)
+  71   2          {
+  72   3            x = playSong(STAR);
+  73   3          }
+  74   2          else if(SW2 == 0)
+  75   2          {
+  76   3            x = playSong(SORC);
+  77   3          }
+  78   2          else if (SW3 == 0)
+  79   2          {
+  80   3            x = playSong(POKE);
+  81   3          }
+  82   2          else if (SW9 == 0)
+  83   2          {
+  84   3            x = false;
+  85   3          }
+  86   2        }
+  87   1      
+  88   1        LED8 = 1;
+  89   1        
+  90   1        return mode + 1;
+  91   1      }
+  92          
+  93          //TODO: Decide if we need a 3rd mode
+  94          int mode3(int mode)
+  95          {
+  96   1        return mode + 1;
+  97   1      }
+  98          
+  99          void delay()
+ 100          {
+ 101   1        char i = 0;
+ 102   1      
+ 103   1          TMOD = TMOD & 0xf0;
+ 104   1        TMOD = TMOD | 0x01;
+ 105   1        TH0 = 0x00;
+ 106   1        TL0 = 0x00;
+ 107   1        for(i = 0; i < 12; i++)
+ 108   1        {
+ 109   2          TR0 = 1;
+ 110   2          while(TF0 == 0);
+ 111   2          TR0 = 0;
+ 112   2          TF0 = 0;
+ 113   2        }
+ 114   1      
+ 115   1        return;
+ 116   1      }
+
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/04/2014 22:28:03 PAGE 3   
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    207    ----
-   CONSTANT SIZE    =      7    ----
+   CODE SIZE        =    236    ----
+   CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----      12
+   DATA SIZE        =   ----      11
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

@@ -9,7 +9,7 @@ code unsigned int sorc_hz[57] = {F5, C6, C5, D5, E5, F5, AF5, F5, AF5, G5, F5, E
 code unsigned char sorc_dur[57] = {DQ, DQ, E, E, E, Q, E, Q, E, E, E, E, Q, E, Q, E, E, E, E, Q, E, E, E, E, E, E, E, E, E, E, Q, E, Q, E, E, E, E, Q, E, E, E, E, E, E, E, E, E, E, E, E, E, DQ, E, E, E, DQ, DQ};
 code char sorc_name[21] = "Sorceror's Apprentice";
 	
-code unsigned int poke_hz[1] = {1000};
+code unsigned int poke_hz[1] = {500};
 code unsigned char poke_dur[1] = {Q};
 code char poke_name[7] = "Pokemon";
 	
@@ -22,7 +22,7 @@ bool playSong(Song s)
 	{
 		case STAR:
 			transmit(star_name, 9);
-			x = play_song(star_hz, star_dur, notes[1]);
+			x = play_song(star_hz, star_dur, notes[0]);
 			break;
 			
 		case SORC:
@@ -58,7 +58,7 @@ bool play_note(unsigned int hz, unsigned char dur)
 	unsigned char high, low;
 	
 	time = hz * dur / 18;
-	i = 307125 / hz;
+	i = 0xFFFF - 61425 / hz*30 + 1;
 	high = i / 256;
 	low = i % 256;
 	
@@ -89,4 +89,7 @@ void play_small_delay()
 	TMOD = TMOD | 0x02;
 	TH0 = 0x00;
 	TR0 = 1;
+	while(TF0 == 0);
+	TR0 = 0;
+	TF0 = 0;
 }
