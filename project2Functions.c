@@ -261,6 +261,12 @@ int mode3(int mode)
 				count = 0;
 			}
 		}
+	}
+	
+	clearSevenSeg();
+	LED3 = 1;
+	
+	return mode + 1;
 }
 
 void delay()
