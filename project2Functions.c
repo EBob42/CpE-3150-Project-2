@@ -93,7 +93,174 @@ int mode2(int mode)
 //TODO: Decide if we need a 3rd mode
 int mode3(int mode)
 {
+bool x = true;
+	LED8 = 0;
+	
+	while(x == true)
+	{
+		if(SW1 == 0)
+		{
+			x = playSong(STAR);
+		}
+		else if(SW2 == 0)
+		{
+			x = playSong(SORC);
+		}
+		else if (SW3 == 0)
+		{
+			x = playSong(POKE);
+		}
+		else if (SW9 == 0)
+		{
+		  x = false;
+		}
+	}
+
+	LED8 = 1;
+	
 	return mode + 1;
+}
+
+//TODO: Decide if we need a 3rd mode
+int mode3(int mode)
+{
+  	bool x = true;
+	int count = 0;
+	
+	LED3 = 0;
+	
+	while(x)
+	{
+		if(!SW1)
+		{
+			count++;
+	  	}
+		
+		delay();
+		
+	  if(SW9 == 0)
+		{
+			x = false;
+		}
+		
+		else
+		{
+			if(count == 0)
+			{
+				setSevenSeg();
+				SSG = 0;
+			}
+			
+			else if (count == 1)
+			{
+				clearSevenSeg();
+				SSB = 1;
+				SSC = 1;
+			}
+			
+			else if (count == 2)
+			{
+			  setSevenSeg();
+				SSC = 0;
+				SSF = 0;
+			}
+			
+			else if (count == 3)
+			{
+			  setSevenSeg();
+				SSC = 0;
+				SSF = 0;
+			}
+			
+			else if (count == 4)
+			{
+			  setSevenSeg();
+				SSA = 0;
+				SSD = 0;
+				SSE = 0;
+			}
+			
+			else if (count == 5)
+			{
+				setSevenSeg();
+				SSB = 0;
+				SSE = 0;
+			}
+			
+			else if (count == 6)
+			{
+				setSevenSeg();
+				SSA = 0;
+				SSB = 0;
+			}
+			
+			else if (count == 7)
+			{
+				clearSevenSeg();
+				SSA = 1;
+				SSB = 1;
+				SSC = 1;
+			}
+			
+			else if (count == 8)
+			{
+				setSevenSeg();
+			}
+			
+			else if (count == 9)
+			{
+				setSevenSeg();
+				SSD = 0;
+				SSE = 0;
+			}
+			
+			else if (count == 10)
+			{
+				setSevenSeg();
+				SSD = 0;
+			}
+			
+			else if (count == 11)
+			{
+				setSevenSeg();
+				SSA = 0;
+				SSB = 0;
+			}
+			
+			else if (count == 12)
+			{
+				setSevenSeg();
+				SSB = 0;
+				SSC = 0;
+			}
+			
+			else if (count == 13)
+			{
+				setSevenSeg();
+				SSA = 0;
+				SSF = 0;
+			}
+			
+			else if (count == 14)
+			{
+				setSevenSeg();
+				SSB = 0;
+				SSC = 0;
+			}
+			
+			else if (count == 15)
+			{
+				setSevenSeg();
+				SSB = 0;
+				SSC = 0;
+				SSD = 0;
+			}
+	    
+			else if (count > 15)
+			{
+				count = 0;
+			}
+		}
 }
 
 void delay()
