@@ -15,6 +15,14 @@ sbit LED7 = P2^7;
 sbit LED8 = P0^4;
 sbit LED9 = P2^6;
 
+sbit SSA = P1^0;
+sbit SSB = P1^1;
+sbit SSC = P1^2;
+sbit SSD = P1^3;
+sbit SSE = P1^5;
+sbit SSF = P3^0;
+sbit SSG = P3^1;
+
 sbit SPK = P1^7;
 
 sbit SW1 = P2^0;
