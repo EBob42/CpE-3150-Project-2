@@ -281,3 +281,29 @@ void delay()
 
   return;
 }
+
+void setSevenSeg()
+{
+	SSA = 1;
+	SSB = 1;
+	SSC = 1;
+	SSD = 1;
+	SSE = 1;
+	SSF = 1;
+	SSG = 1;
+
+	return;
+}
+
+void clearSevenSeg()
+{
+	SSA = 0;
+	SSB = 0;
+	SSC = 0;
+	SSD = 0;
+	SSE = 0;
+	SSF = 0;
+	SSG = 0;
+	
+	return;
+}
