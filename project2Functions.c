@@ -93,37 +93,6 @@ int mode2(int mode)
 //TODO: Decide if we need a 3rd mode
 int mode3(int mode)
 {
-bool x = true;
-	LED8 = 0;
-	
-	while(x == true)
-	{
-		if(SW1 == 0)
-		{
-			x = playSong(STAR);
-		}
-		else if(SW2 == 0)
-		{
-			x = playSong(SORC);
-		}
-		else if (SW3 == 0)
-		{
-			x = playSong(POKE);
-		}
-		else if (SW9 == 0)
-		{
-		  x = false;
-		}
-	}
-
-	LED8 = 1;
-	
-	return mode + 1;
-}
-
-//TODO: Decide if we need a 3rd mode
-int mode3(int mode)
-{
   	bool x = true;
 	int count = 0;
 	
