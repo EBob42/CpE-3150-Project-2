@@ -42,5 +42,6 @@ int mode3(int mode);
 void delay();
 void setSevenSeg();
 void clearSevenSeg();
+void Pattern();
 
 #endif

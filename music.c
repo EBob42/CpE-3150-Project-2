@@ -42,13 +42,27 @@ bool play_song(unsigned int hz[], unsigned char dur[], unsigned char length)
 {
 	unsigned char i;
 	bool x;
+	
+	IEN0 = 0x88;
+	TMOD = 0x10;
+	TH1 = 0x00;
+	TL1 = 0x00;
+	TR1 = 1;
+	
 	for (i = 0; i < length; ++i)
 	{
 		play_small_delay();
 		x = play_note(hz[i], dur[i]);
 		if (x == false)
+		{
+			IEN0 = 0x00;
+			TR1 = 0;
 			return false;
+		}
 	}
+	
+	TR1 = 0;
+	IEN0 = 0x00;
 	return true;
 }
 

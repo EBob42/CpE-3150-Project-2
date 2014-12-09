@@ -35,19 +35,19 @@ int mode1(int mode)  //plays random sound when button is pressed
 
   while(x == true)
   {
-    if(!SW1)  //500hz sound
+    if(!SW1)  //C sound
     {
-	  x = play_note(500, 1);
+	  x = play_note(C6, 1);
     }
 
-    else if(!SW2) //4000hz sound
+    else if(!SW2) //D sound
     {
-      x = play_note(4000, 1);
+      x = play_note(D6, 1);
     }
 
-    else if(!SW3) //10000hz sound
+    else if(!SW3) //E sound
     {
-      x = play_note(10000, 1);
+      x = play_note(E6, 1);
     }
 	else if (!SW9)
 	{
@@ -281,4 +281,38 @@ void clearSevenSeg()
 	SSG = 0;
 	
 	return;
+}
+
+void Pattern() interrupt 3
+{
+	static bool current = 0;
+	TF1 = 0;
+	switch (current)
+	{
+		case 0:
+			LED1 = 0;
+			LED2 = 1;
+			LED3 = 0;
+			LED4 = 1;
+			LED5 = 0;
+			LED6 = 1;
+			LED7 = 0;
+			LED8 = 1;
+			LED9 = 0;
+			current = 1;
+			break;
+		
+		case 1:
+			LED1 = 1;
+			LED2 = 0;
+			LED3 = 1;
+			LED4 = 0;
+			LED5 = 1;
+			LED6 = 0;
+			LED7 = 1;
+			LED8 = 0;
+			LED9 = 1;
+			current = 0;
+			break;
+	}
 }
