@@ -66,12 +66,24 @@ void mode2()
 	while(x == true)
 	{
 		if(SW1 == 0)
-		{
+		{			
+			clearSevenSeg();
+
+			SSB = 1;
+			SSC = 1;
 			x = playSong(STAR);
+			SSB = 0;
+			SSC = 0;
 		}
 		else if(SW2 == 0)
 		{
+		    setSevenSeg();
+            SSC = 0;
+			SSF = 0;
+
 			x = playSong(SORC);
+
+			clearSevenSeg();
 		}
 		else if (SW3 == 0)
 		{
@@ -83,6 +95,7 @@ void mode2()
 		}
 	}
 
+    clearSevenSeg();
 	LED8 = 1;
 }
 
@@ -90,9 +103,10 @@ void mode2()
 void mode3()
 {
   	bool x = true;
+	bool y = true;
 	int count = 0;
 	
-	LED3 = 0;
+	LED7 = 0;
 	
 	while(x)
 	{
@@ -100,6 +114,11 @@ void mode3()
 		{
 			count++;
 	  	}
+
+		if(!SW3)
+		{
+		    count--;
+		}
 		
 		delay();
 		
@@ -133,8 +152,8 @@ void mode3()
 			else if (count == 3)
 			{
 			  setSevenSeg();
-				SSC = 0;
-				SSF = 0;
+			  SSE = 0;
+			  SSF = 0;
 			}
 			
 			else if (count == 4)
@@ -197,6 +216,7 @@ void mode3()
 				setSevenSeg();
 				SSB = 0;
 				SSC = 0;
+				SSG = 0;
 			}
 			
 			else if (count == 13)
@@ -224,12 +244,69 @@ void mode3()
 			else if (count > 15)
 			{
 				count = 0;
+				x = play_note(C6, 8);
+				x = play_note(D6, 8);
+				x = play_note(E6, 8);
+			}
+
+			else if(count < 0)
+			{
+			    count = 15;
+				x = play_note(E6, 8);
+				x = play_note(D6, 8);
+				x = play_note(C6, 8);
 			}
 		}
+
+		if(!SW2)
+			{
+			    y = true;
+
+     			delay();
+			clearSevenSeg();
+			    while(y)
+				{
+					SSA = 1;
+					y = smDelay();
+					if(!y)
+					  break;
+					SSA = 0;
+
+					SSB = 1;
+					y = smDelay();
+					if(!y)
+					  break;
+					SSB = 0;
+
+					SSC = 1;
+					y = smDelay();
+					if(!y)
+					  break;
+					SSC = 0;
+
+					SSD = 1;
+					y = smDelay();
+					if(!y)
+					  break;
+					SSD = 0;
+
+					SSE = 1;
+					y = smDelay();
+					if(!y)
+					  break;
+					SSE = 0;
+
+					SSF = 1;
+					y = smDelay();
+					if(!y)
+					  break;
+					SSF = 0;
+				}
+			}
 	}
 	
 	clearSevenSeg();
-	LED3 = 1;
+	LED7 = 1;
 }
 
 void delay()
@@ -322,4 +399,25 @@ void clearLED()
 	LED7 = 1;
 	LED8 = 1;
 	LED9 = 1;
+}
+
+bool smDelay()
+{
+  int i;
+  bool x;
+
+  TMOD = 0x01;
+  TH0 = -255;
+  TR0 = 1;
+
+  for(i = 0; i < 5; i++)
+  {
+    while(!TF0);  
+	TF0 = 0;
+  }
+
+  if(!SW2)
+    x = false;
+  
+  return x;
 }
