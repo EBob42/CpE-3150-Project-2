@@ -52,8 +52,8 @@ void mode1()
     else if(!SW2) //D sound
     {
 			setSevenSeg();
-			SSB = 0;
-			SSC = 0;
+			SSA = 0;
+			SSF = 0;
       x = play_note(D6, 1);
 			clearSevenSeg();
     }
@@ -63,7 +63,6 @@ void mode1()
 			setSevenSeg();
 			SSB = 0;
 			SSC = 0;
-			SSD = 0;
       x = play_note(E6, 1);
 			clearSevenSeg();
     }
@@ -143,7 +142,13 @@ void mode3()
 		{
 			count++;
 			if(count == 16)
+			{
 				count = 0;
+				play_note(C6, 6);
+				play_note(E6, 6);
+				play_note(G6, 6);
+				play_note(C7, 6);
+			}
 			updateCount(count);
 	  }
 
@@ -151,7 +156,13 @@ void mode3()
 		{
 		  count--;
 			if(count == 255)
+			{
 				count = 15;
+				play_note(C7, 6);
+				play_note(G6, 6);
+				play_note(E6, 6);
+				play_note(C6, 6);
+			}
 			updateCount(count);
 		}
 		
@@ -388,133 +399,101 @@ bool smDelay()
 **********************************************************/
 void updateCount(unsigned char count)
 {
-	if(count == 0)
+	switch(count)
 	{
-		setSevenSeg();
-		SSG = 0;
-	}
+		case 0:
+			setSevenSeg();
+			SSG = 0;
+			break;
 		
-	else if (count == 1)
-	{
-		clearSevenSeg();
-		SSB = 1;
-		SSC = 1;
-	}
+		case 1:
+			clearSevenSeg();
+			SSB = 1;
+			SSC = 1;
+			break;
 	
-	else if (count == 2)
-	{
-	  setSevenSeg();
-		SSC = 0;
-		SSF = 0;
-	}
+		case 2:
+			setSevenSeg();
+			SSC = 0;
+			SSF = 0;
+			break;
 		
-	else if (count == 3)
-	{
-	  setSevenSeg();
-	  SSE = 0;
-	  SSF = 0;
-	}
+		case 3:
+			setSevenSeg();
+			SSE = 0;
+			SSF = 0;
+			break;
 			
-	else if (count == 4)
-	{
-	  setSevenSeg();
-		SSA = 0;
-		SSD = 0;
-		SSE = 0;
-	}
+		case 4:
+			setSevenSeg();
+			SSA = 0;
+			SSD = 0;
+			SSE = 0;
+			break;
 			
-	else if (count == 5)
-	{
-		setSevenSeg();
-		SSB = 0;
-		SSE = 0;
-	}
+		case 5:
+			setSevenSeg();
+			SSB = 0;
+			SSE = 0;
+			break;
 			
-	else if (count == 6)
-	{
-		setSevenSeg();
-		SSA = 0;
-		SSB = 0;
-	}
+		case 6:
+			setSevenSeg();
+			SSA = 0;
+			SSB = 0;
+			break;
 			
-	else if (count == 7)
-	{
-		clearSevenSeg();
-		SSA = 1;
-		SSB = 1;
-		SSC = 1;
-	}
+		case 7:
+			clearSevenSeg();
+			SSA = 1;
+			SSB = 1;
+			SSC = 1;
 		
-	else if (count == 8)
-	{
-		setSevenSeg();
-	}
+		case 8:
+			setSevenSeg();
+			break;
 	
-	else if (count == 9)
-	{
-		setSevenSeg();
-		SSD = 0;
-		SSE = 0;
-	}
+		case 9:
+			setSevenSeg();
+			SSD = 0;
+			SSE = 0;
+			break;
 		
-	else if (count == 10)
-	{
-		setSevenSeg();
-		SSD = 0;
-	}
+		case 10:
+			setSevenSeg();
+			SSD = 0;
+			break;
 			
-	else if (count == 11)
-	{
-		setSevenSeg();
-		SSA = 0;
-		SSB = 0;
-	}
+		case 11:
+			setSevenSeg();
+			SSA = 0;
+			SSB = 0;
+			break;
 			
-	else if (count == 12)
-	{
-		setSevenSeg();
-		SSB = 0;
-		SSC = 0;
-		SSG = 0;
-	}
+		case 12:
+			setSevenSeg();
+			SSB = 0;
+			SSC = 0;
+			SSG = 0;
+			break;
 			
-	else if (count == 13)
-	{
-		setSevenSeg();
-		SSA = 0;
-		SSF = 0;
-	}
+		case 13:
+			setSevenSeg();
+			SSA = 0;
+			SSF = 0;
+			break;
 		
-	else if (count == 14)
-	{
-		setSevenSeg();
-		SSB = 0;
-		SSC = 0;
-	}
+		case 14:
+			setSevenSeg();
+			SSB = 0;
+			SSC = 0;
+			break;
 			
-	else if (count == 15)
-	{
-		setSevenSeg();
-		SSB = 0;
-		SSC = 0;
-		SSD = 0;
-	}
-	    
-	else if (count > 15)
-	{
-		count = 0;
-		play_note(C6, 6);
-		play_note(E6, 6);
-		play_note(G6, 6);
-		play_note(C7, 6);
-	}
-			
-	else if(count < 0)
-	{
-	  count = 15;
-		play_note(C7, 6);
-		play_note(G6, 6);
-		play_note(E6, 6);
-		play_note(C6, 6);
+		case 15:
+			setSevenSeg();
+			SSB = 0;
+			SSC = 0;
+			SSD = 0;
+			break;
 	}
 }
