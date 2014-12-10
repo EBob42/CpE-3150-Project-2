@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:29:57 PAGE 1   
+C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:45:30 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE MUSIC
@@ -62,7 +62,7 @@ line level    source
   48            * @desc   Plays the song corresponding to the arrays given
   49            *
   50            * @param1 Array of frequencies
-C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:29:57 PAGE 2   
+C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:45:30 PAGE 2   
 
   51            * @param2 Array of note durations
   52            * @param3 Number of notes in the song
@@ -72,7 +72,7 @@ line level    source
   56   1        unsigned char i;
   57   1        bool x;
   58   1        
-  59   1        IEN0 = 0x88;
+  59   1        IEN0 |= 0x88;
   60   1        TMOD = 0x10;
   61   1        TH1 = 0x00;
   62   1        TL1 = 0x00;
@@ -84,7 +84,7 @@ line level    source
   68   2          x = play_note(hz[i], dur[i]);
   69   2          if (x == false)
   70   2          {
-  71   3            IEN0 = 0x00;
+  71   3            IEN0 &= ~0x08;
   72   3            TR1 = 0;
   73   3            clearLED();
   74   3            return false;
@@ -92,7 +92,7 @@ line level    source
   76   2        }
   77   1        
   78   1        TR1 = 0;
-  79   1        IEN0 = 0x00;
+  79   1        IEN0 &= ~0x08;
   80   1        clearLED();
   81   1        return true;
   82   1      }
@@ -126,7 +126,7 @@ line level    source
  110   2          TH0 = high;
  111   2          TL0 = low;
  112   2          TR0 = 1;
-C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:29:57 PAGE 3   
+C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:45:30 PAGE 3   
 
  113   2          while (TF0 == 0)
  114   2          {
@@ -162,7 +162,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    314    ----
+   CODE SIZE        =    315    ----
    CONSTANT SIZE    =    329    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

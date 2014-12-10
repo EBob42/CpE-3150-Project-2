@@ -479,18 +479,18 @@ void updateCount(unsigned char count)
 	else if (count > 15)
 	{
 		count = 0;
-		x = play_note(C6, 6);
-		x = play_note(E6, 6);
-		x = play_note(G6, 6);
-		x = play_note(C7, 6);
+		play_note(C6, 6);
+		play_note(E6, 6);
+		play_note(G6, 6);
+		play_note(C7, 6);
 	}
 			
 	else if(count < 0)
 	{
 	  count = 15;
-		x = play_note(C7, 6);
-		x = play_note(G6, 6);
-		x = play_note(E6, 6);
-		x = play_note(C6, 6);
+		play_note(C7, 6);
+		play_note(G6, 6);
+		play_note(E6, 6);
+		play_note(C6, 6);
 	}
 }
