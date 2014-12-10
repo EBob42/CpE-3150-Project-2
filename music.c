@@ -56,13 +56,15 @@ bool play_song(unsigned int hz[], unsigned char dur[], unsigned char length)
 		if (x == false)
 		{
 			IEN0 = 0x00;
-			TR1 = 0;
+			TR1 = 0
+			clearLED();
 			return false;
 		}
 	}
 	
 	TR1 = 0;
 	IEN0 = 0x00;
+	clearLED();
 	return true;
 }
 

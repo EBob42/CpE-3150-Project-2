@@ -12,7 +12,6 @@ void test() interrupt 2
 //			work together to make it happen).
 void main()
 {
-  int mode = 0;
   P2M1 = 0;
   P1M1 = 0;
   P0M1 = 0;
@@ -28,15 +27,13 @@ void main()
 
   while(1)
   {
-		mode = mode1(mode);
+		mode1();
 	    delay();
 
-		mode = mode2(mode);
+		mode2();
 		delay();
 
-		mode = mode3(mode);
+		mode3();
 		delay();
-
-		mode = 0;
   }
 }

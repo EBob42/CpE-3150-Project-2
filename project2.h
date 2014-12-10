@@ -36,12 +36,13 @@ sbit SW8 = P0^0;
 sbit SW9 = P2^2;
 
 void transmit(char msg[], int size);
-int mode1(int mode);
-int mode2(int mode);
-int mode3(int mode);
+void mode1();
+void mode2();
+void mode3();
 void delay();
 void setSevenSeg();
 void clearSevenSeg();
 void Pattern();
+void clearLED();
 
 #endif

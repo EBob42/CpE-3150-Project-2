@@ -27,7 +27,7 @@ void transmit(char msg[], int size)
 //
 //			Determine if the return and parameter are still needed
 
-int mode1(int mode)  //plays random sound when button is pressed
+void mode1()  //plays random sound when button is pressed
 {
   bool x = true;
   LED9 = 0;
@@ -60,7 +60,7 @@ int mode1(int mode)  //plays random sound when button is pressed
   return mode + 1;
 }
 
-int mode2(int mode)
+void mode2()
 {
 	bool x = true;
 	LED8 = 0;
@@ -91,7 +91,7 @@ int mode2(int mode)
 }
 
 //TODO: Decide if we need a 3rd mode
-int mode3(int mode)
+void mode3()
 {
   	bool x = true;
 	int count = 0;
@@ -315,4 +315,17 @@ void Pattern() interrupt 3
 			current = 0;
 			break;
 	}
+}
+
+void clearLED()
+{
+	LED1 = 1;
+	LED2 = 1;
+	LED3 = 1;
+	LED4 = 1;
+	LED5 = 1;
+	LED6 = 1;
+	LED7 = 1;
+	LED8 = 1;
+	LED9 = 1;
 }
