@@ -28,7 +28,10 @@ RETURNS: Nothing
 CAUTION: If interrupts are being used then EA must be set to 1
          after calling this function
 ************************************************************************/
-void uart_init(void)
+void uart_init
+  (
+  void
+  )
 {
   unsigned int BRG_Val;
   // configure UART
@@ -48,7 +51,7 @@ void uart_init(void)
   AUXR1 |= 0x40;
 
   // configure baud rate generator
-  BRG_Val=(unsigned int)(OSC_FREQ/9600UL);
+  BRG_Val=(unsigned int)(OSC_FREQ/1200UL);
   BRG_Val=BRG_Val-16;
   BRGCON = 0x00;
   BRGR1 = BRG_Val>>8;
@@ -78,7 +81,10 @@ RETURNS: Nothing
 CAUTION: uart_init must be called first
          EA must be set to 1
 ************************************************************************/
-void uart_isr(void) interrupt 4 using 1
+void uart_isr
+  (
+  void
+  ) interrupt 4 using 1
 {
   if (RI)
   {
@@ -102,7 +108,10 @@ DESC:    Transmits a 8-bit value via the UART in the current mode
 RETURNS: Nothing
 CAUTION: uart_init must be called first
 ************************************************************************/
-void uart_transmit(unsigned char value)  // data to transmit
+void uart_transmit
+  (
+  unsigned char value    // data to transmit
+  )
 {
   while(mtxbusy);
   mtxbusy = 1;
@@ -114,7 +123,10 @@ DESC:    Gets a received 8-bit value from the UART
 RETURNS: Received data
 CAUTION: uart_init must be called first
 ************************************************************************/
-unsigned char uart_get(void)
+unsigned char uart_get
+  (
+  void
+  )
 {
   return SBUF;
 } // uart_get

@@ -11,15 +11,17 @@ void transmit(unsigned char msg[], unsigned char size)
 {
   unsigned char i = 0;
 
-  uart_init();
-
+	EA = 1;
+	
   for(i = 0; i < size; i++)
   {
     uart_transmit(msg[i]);
   }
 	uart_transmit('\n');
   uart_transmit('\0');
-
+	
+	EA = 0;
+	
   return;
 }
 

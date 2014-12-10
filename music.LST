@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:54:51 PAGE 1   
+C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 17:08:35 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE MUSIC
@@ -16,7 +16,7 @@ line level    source
              - EF6, C6, F5, F5, F5, BF5, F6, EF6, D6, C6, BF6, F6, EF6, D6, C6, BF6, F6, C7, BF6, A6, BF6, BF5, BF5, BF5, BF5};
    7          code unsigned char star_dur[42] = {E3, E3, E3, H, H, E3, E3, E3, H, Q, E3, E3, E3, H, Q, E3, E3, E3, H, E3
              -, E3, E3, H, H, E3, E3, E3, H, Q, E3, E3, E3, H, Q, E3, E3, E3, Q, E3, E3, E3, Q};
-   8          code char star_name[9] = "Star Wars";
+   8          code unsigned char star_name[9] = "Star Wars";
    9          
   10          /**********************************************************
   11            * Sorceror's Apprentice theme arrays
@@ -26,7 +26,7 @@ line level    source
              - C6, D6, E6, F6, E6, F6, G6, C6, D6, E6, F6, F5};
   14          code unsigned char sorc_dur[57] = {DQ, DQ, E, E, E, Q, E, Q, E, E, E, E, Q, E, Q, E, E, E, E, Q, E, E, E, 
              -E, E, E, E, E, E, E, Q, E, Q, E, E, E, E, Q, E, E, E, E, E, E, E, E, E, E, E, E, E, DQ, E, E, E, DQ, DQ};
-  15          code char sorc_name[21] = "Sorceror's Apprentice";
+  15          code unsigned char sorc_name[21] = "Sorceror's Apprentice";
   16          
   17          /**********************************************************
   18            * Length of songs
@@ -62,7 +62,7 @@ line level    source
   48            * @desc   Plays the song corresponding to the arrays given
   49            *
   50            * @param1 Array of frequencies
-C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:54:51 PAGE 2   
+C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 17:08:35 PAGE 2   
 
   51            * @param2 Array of note durations
   52            * @param3 Number of notes in the song
@@ -126,7 +126,7 @@ line level    source
  110   2          TH0 = high;
  111   2          TL0 = low;
  112   2          TR0 = 1;
-C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:54:51 PAGE 3   
+C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 17:08:35 PAGE 3   
 
  113   2          while (TF0 == 0)
  114   2          {

@@ -11,13 +11,15 @@ void main()
   P0M1 = 0;
   clearSevenSeg();
 	
+	uart_init();
+	
   transmit("song 1", 6);
   transmit("song 2", 6);
 
   while(1)
   {
 		mode1();
-	    delay();
+	  delay();
 
 		mode2();
 		delay();
