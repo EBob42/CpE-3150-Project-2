@@ -7,10 +7,9 @@
 	*	@param1 String to be sent serially
 	*	@param2 Size of the string to be sent
 **********************************************************/
-void transmit(char msg[], int size)
+void transmit(char msg[], char size)
 {
-  int i = 0;
-  EA = 1;
+  char i = 0;
 
   uart_init();
 
@@ -20,7 +19,6 @@ void transmit(char msg[], int size)
   }
 	uart_transmit('\n');
   uart_transmit('\0');
-  EA = 0;
 
   return;
 }
@@ -116,7 +114,7 @@ void mode3()
 {
   bool x = true;
 	bool y = true;
-	int count = 0;
+	unsigned char count = 0;
 	
 	LED7 = 0;
 	
@@ -125,11 +123,13 @@ void mode3()
 		if(!SW1)
 		{
 			count++;
+			updateCount(count);
 	  }
 
 		if(!SW3)
 		{
 		  count--;
+			updateCount(count);
 		}
 		
 		delay();
@@ -137,139 +137,6 @@ void mode3()
 	  if(SW9 == 0)
 		{
 			x = false;
-		}
-		
-		else
-		{
-			if(count == 0)
-			{
-				setSevenSeg();
-				SSG = 0;
-			}
-			
-			else if (count == 1)
-			{
-				clearSevenSeg();
-				SSB = 1;
-				SSC = 1;
-			}
-			
-			else if (count == 2)
-			{
-			  setSevenSeg();
-				SSC = 0;
-				SSF = 0;
-			}
-			
-			else if (count == 3)
-			{
-			  setSevenSeg();
-			  SSE = 0;
-			  SSF = 0;
-			}
-			
-			else if (count == 4)
-			{
-			  setSevenSeg();
-				SSA = 0;
-				SSD = 0;
-				SSE = 0;
-			}
-			
-			else if (count == 5)
-			{
-				setSevenSeg();
-				SSB = 0;
-				SSE = 0;
-			}
-			
-			else if (count == 6)
-			{
-				setSevenSeg();
-				SSA = 0;
-				SSB = 0;
-			}
-			
-			else if (count == 7)
-			{
-				clearSevenSeg();
-				SSA = 1;
-				SSB = 1;
-				SSC = 1;
-			}
-			
-			else if (count == 8)
-			{
-				setSevenSeg();
-			}
-			
-			else if (count == 9)
-			{
-				setSevenSeg();
-				SSD = 0;
-				SSE = 0;
-			}
-			
-			else if (count == 10)
-			{
-				setSevenSeg();
-				SSD = 0;
-			}
-			
-			else if (count == 11)
-			{
-				setSevenSeg();
-				SSA = 0;
-				SSB = 0;
-			}
-			
-			else if (count == 12)
-			{
-				setSevenSeg();
-				SSB = 0;
-				SSC = 0;
-				SSG = 0;
-			}
-			
-			else if (count == 13)
-			{
-				setSevenSeg();
-				SSA = 0;
-				SSF = 0;
-			}
-			
-			else if (count == 14)
-			{
-				setSevenSeg();
-				SSB = 0;
-				SSC = 0;
-			}
-			
-			else if (count == 15)
-			{
-				setSevenSeg();
-				SSB = 0;
-				SSC = 0;
-				SSD = 0;
-			}
-	    
-			else if (count > 15)
-			{
-				count = 0;
-				x = play_note(C6, 6);
-				x = play_note(E6, 6);
-				x = play_note(G6, 6);
-				x = play_note(C7, 6);
-			}
-
-			else if(count < 0)
-			{
-			  count = 15;
-				x = play_note(C7, 6);
-				x = play_note(G6, 6);
-				x = play_note(E6, 6);
-				x = play_note(C6, 6);
-			}
 		}
 
 		if(!SW2)
@@ -488,4 +355,142 @@ bool smDelay()
     x = false;
   
   return x;
+}
+
+/**********************************************************
+	* updateCount
+	*	@desc		Updates the seven segment display to
+	*					show the current count
+**********************************************************/
+void updateCount(unsigned char count)
+{
+	if(count == 0)
+	{
+		setSevenSeg();
+		SSG = 0;
+	}
+		
+	else if (count == 1)
+	{
+		clearSevenSeg();
+		SSB = 1;
+		SSC = 1;
+	}
+	
+	else if (count == 2)
+	{
+	  setSevenSeg();
+		SSC = 0;
+		SSF = 0;
+	}
+		
+	else if (count == 3)
+	{
+	  setSevenSeg();
+	  SSE = 0;
+	  SSF = 0;
+	}
+			
+	else if (count == 4)
+	{
+	  setSevenSeg();
+		SSA = 0;
+		SSD = 0;
+		SSE = 0;
+	}
+			
+	else if (count == 5)
+	{
+		setSevenSeg();
+		SSB = 0;
+		SSE = 0;
+	}
+			
+	else if (count == 6)
+	{
+		setSevenSeg();
+		SSA = 0;
+		SSB = 0;
+	}
+			
+	else if (count == 7)
+	{
+		clearSevenSeg();
+		SSA = 1;
+		SSB = 1;
+		SSC = 1;
+	}
+		
+	else if (count == 8)
+	{
+		setSevenSeg();
+	}
+	
+	else if (count == 9)
+	{
+		setSevenSeg();
+		SSD = 0;
+		SSE = 0;
+	}
+		
+	else if (count == 10)
+	{
+		setSevenSeg();
+		SSD = 0;
+	}
+			
+	else if (count == 11)
+	{
+		setSevenSeg();
+		SSA = 0;
+		SSB = 0;
+	}
+			
+	else if (count == 12)
+	{
+		setSevenSeg();
+		SSB = 0;
+		SSC = 0;
+		SSG = 0;
+	}
+			
+	else if (count == 13)
+	{
+		setSevenSeg();
+		SSA = 0;
+		SSF = 0;
+	}
+		
+	else if (count == 14)
+	{
+		setSevenSeg();
+		SSB = 0;
+		SSC = 0;
+	}
+			
+	else if (count == 15)
+	{
+		setSevenSeg();
+		SSB = 0;
+		SSC = 0;
+		SSD = 0;
+	}
+	    
+	else if (count > 15)
+	{
+		count = 0;
+		x = play_note(C6, 6);
+		x = play_note(E6, 6);
+		x = play_note(G6, 6);
+		x = play_note(C7, 6);
+	}
+			
+	else if(count < 0)
+	{
+	  count = 15;
+		x = play_note(C7, 6);
+		x = play_note(G6, 6);
+		x = play_note(E6, 6);
+		x = play_note(C6, 6);
+	}
 }

@@ -56,6 +56,7 @@ bool play_song(unsigned int hz[], unsigned char dur[], unsigned char length)
 	unsigned char i;
 	bool x;
 	
+	IEN0 = 0x88;
 	TMOD = 0x10;
 	TH1 = 0x00;
 	TL1 = 0x00;
@@ -132,8 +133,9 @@ bool play_note(unsigned int hz, unsigned char dur)
 void play_small_delay()
 {
 	TMOD = TMOD & 0xf0;
-	TMOD = TMOD | 0x02;
+	TMOD = TMOD | 0x01;
 	TH0 = 0x00;
+	TL0 = 0x00;
 	TR0 = 1;
 	while(TF0 == 0);
 	TR0 = 0;

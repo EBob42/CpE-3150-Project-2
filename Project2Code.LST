@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   PROJECT2CODE                                                      12/10/2014 16:09:46 PAGE 1   
+C51 COMPILER V9.53.0.0   PROJECT2CODE                                                      12/10/2014 16:29:57 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE PROJECT2CODE
@@ -40,7 +40,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     59    ----
+   CODE SIZE        =     55    ----
    CONSTANT SIZE    =     14    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

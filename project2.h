@@ -54,7 +54,7 @@ sbit SW9 = P2^2;
 	*	@param1 String to be sent serially
 	*	@param2 Size of the string to be sent
 **********************************************************/
-void transmit(char msg[], int size);
+void transmit(char msg[], char size);
 
 /**********************************************************
 	* mode1
@@ -125,8 +125,17 @@ void clearLED();
 /**********************************************************
 	* smDelay
 	*	@desc		Smaller delay function,
-	*					approximately  seconds
+	*					approximately 0.1 seconds
 **********************************************************/
 bool smDelay();
+
+/**********************************************************
+	* updateCount
+	*	@desc		Updates the seven segment display to
+	*					show the current count
+	*
+	* @param1 The value to be updated on the display
+**********************************************************/
+void updateCount(unsigned char count);
 
 #endif

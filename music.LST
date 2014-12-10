@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:19:35 PAGE 1   
+C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:29:57 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE MUSIC
@@ -62,7 +62,7 @@ line level    source
   48            * @desc   Plays the song corresponding to the arrays given
   49            *
   50            * @param1 Array of frequencies
-C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:19:35 PAGE 2   
+C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:29:57 PAGE 2   
 
   51            * @param2 Array of note durations
   52            * @param3 Number of notes in the song
@@ -72,7 +72,7 @@ line level    source
   56   1        unsigned char i;
   57   1        bool x;
   58   1        
-  59   1        EA = 1;
+  59   1        IEN0 = 0x88;
   60   1        TMOD = 0x10;
   61   1        TH1 = 0x00;
   62   1        TL1 = 0x00;
@@ -87,84 +87,82 @@ line level    source
   71   3            IEN0 = 0x00;
   72   3            TR1 = 0;
   73   3            clearLED();
-  74   3            EA = 0;
-  75   3            return false;
-  76   3          }
-  77   2        }
-  78   1        
-  79   1        TR1 = 0;
-  80   1        IEN0 = 0x00;
-  81   1        clearLED();
-  82   1        EA = 0;
-  83   1        return true;
-  84   1      }
-  85          
-  86          /**********************************************************
-  87            * play_note
-  88            * @desc   Plays a note at the given frequency
-  89            *         with the given duration.
-  90            *         Also has a pseudo-interrupt (with polling)
-  91            *         for switching modes during the note
-  92            *
-  93            * @param1 Frequency of the note
-  94            * @param2 Duration of the note in 18ths of
-  95            *         a second
-  96          **********************************************************/
-  97          bool play_note(unsigned int hz, unsigned char dur)
-  98          {
-  99   1        unsigned int i, time;
- 100   1        unsigned char high, low;
- 101   1        
- 102   1        time = hz * dur / 18;
- 103   1        i = 0xFFFF - 61425 / hz*30 + 1;
- 104   1        high = i / 256;
- 105   1        low = i % 256;
- 106   1        
- 107   1        TMOD = TMOD & 0xf0;
- 108   1        TMOD = TMOD | 0x01;
- 109   1        
- 110   1        for (i = 0; i < time; ++i)
- 111   1        {
- 112   2          TH0 = high;
-C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:19:35 PAGE 3   
+  74   3            return false;
+  75   3          }
+  76   2        }
+  77   1        
+  78   1        TR1 = 0;
+  79   1        IEN0 = 0x00;
+  80   1        clearLED();
+  81   1        return true;
+  82   1      }
+  83          
+  84          /**********************************************************
+  85            * play_note
+  86            * @desc   Plays a note at the given frequency
+  87            *         with the given duration.
+  88            *         Also has a pseudo-interrupt (with polling)
+  89            *         for switching modes during the note
+  90            *
+  91            * @param1 Frequency of the note
+  92            * @param2 Duration of the note in 18ths of
+  93            *         a second
+  94          **********************************************************/
+  95          bool play_note(unsigned int hz, unsigned char dur)
+  96          {
+  97   1        unsigned int i, time;
+  98   1        unsigned char high, low;
+  99   1        
+ 100   1        time = hz * dur / 18;
+ 101   1        i = 0xFFFF - 61425 / hz*30 + 1;
+ 102   1        high = i / 256;
+ 103   1        low = i % 256;
+ 104   1        
+ 105   1        TMOD = TMOD & 0xf0;
+ 106   1        TMOD = TMOD | 0x01;
+ 107   1        
+ 108   1        for (i = 0; i < time; ++i)
+ 109   1        {
+ 110   2          TH0 = high;
+ 111   2          TL0 = low;
+ 112   2          TR0 = 1;
+C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:29:57 PAGE 3   
 
- 113   2          TL0 = low;
- 114   2          TR0 = 1;
- 115   2          while (TF0 == 0)
- 116   2          {
- 117   3            if(SW9 == 0)
- 118   3              return false;
- 119   3          }
- 120   2          TR0 = 0;
- 121   2          TF0 = 0;
- 122   2          SPK = ~SPK;
- 123   2        }
- 124   1        return true;
- 125   1      }
- 126          
- 127          /**********************************************************
- 128            * play_small_delay
- 129            * @desc   Very short delay function
- 130            *         to distinguish between notes
- 131            *         of the song, especially
- 132            *         repeated notes of the same
- 133            *         frequency
- 134          **********************************************************/
- 135          void play_small_delay()
- 136          {
- 137   1        TMOD = TMOD & 0xf0;
- 138   1        TMOD = TMOD | 0x01;
- 139   1        TH0 = 0x00;
- 140   1        TL0 = 0x00;
- 141   1        TR0 = 1;
- 142   1        while(TF0 == 0);
- 143   1        TR0 = 0;
- 144   1        TF0 = 0;
- 145   1      }
+ 113   2          while (TF0 == 0)
+ 114   2          {
+ 115   3            if(SW9 == 0)
+ 116   3              return false;
+ 117   3          }
+ 118   2          TR0 = 0;
+ 119   2          TF0 = 0;
+ 120   2          SPK = ~SPK;
+ 121   2        }
+ 122   1        return true;
+ 123   1      }
+ 124          
+ 125          /**********************************************************
+ 126            * play_small_delay
+ 127            * @desc   Very short delay function
+ 128            *         to distinguish between notes
+ 129            *         of the song, especially
+ 130            *         repeated notes of the same
+ 131            *         frequency
+ 132          **********************************************************/
+ 133          void play_small_delay()
+ 134          {
+ 135   1        TMOD = TMOD & 0xf0;
+ 136   1        TMOD = TMOD | 0x01;
+ 137   1        TH0 = 0x00;
+ 138   1        TL0 = 0x00;
+ 139   1        TR0 = 1;
+ 140   1        while(TF0 == 0);
+ 141   1        TR0 = 0;
+ 142   1        TF0 = 0;
+ 143   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    321    ----
+   CODE SIZE        =    314    ----
    CONSTANT SIZE    =    329    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
