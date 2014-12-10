@@ -1,8 +1,9 @@
 #include "project2.h"
 
-//TODO: Come up with the extra stuff we want to add
-//			(each person decide stuff, we can probably
-//			work together to make it happen).
+/*****************************************************
+	*	main
+	*	@desc	Primary running of the program
+	***************************************************/
 void main()
 {
   P2M1 = 0;

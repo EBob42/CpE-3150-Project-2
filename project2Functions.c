@@ -1,5 +1,12 @@
 #include "project2.h"
 
+/**********************************************************
+	* transmit
+	*	@desc		Transmits serially using the uart library
+	*
+	*	@param1 String to be sent serially
+	*	@param2 Size of the string to be sent
+**********************************************************/
 void transmit(char msg[], int size)
 {
   int i = 0;
@@ -11,33 +18,29 @@ void transmit(char msg[], int size)
   {
     uart_transmit(msg[i]);
   }
+	uart_transmit('\n');
   uart_transmit('\0');
   EA = 0;
 
   return;
 }
 
-
-//TODO: Determine if this is the desired functionality, or if
-//			something more musical is desired.
-//			Also, check the condition on this loop, determine how to
-//			make sure we can change mode properly and what-not
-//			And be sure of active high or low buttons, make sure 
-//			if statements reflect that properly
-//
-//			Determine if the return and parameter are still needed
-
-void mode1()  //plays random sound when button is pressed
+/**********************************************************
+	* mode1
+	*	@desc		Operates mode 1 of the program:
+	*					Playing sounds on button press,
+	*					similar to a keyboard
+**********************************************************/
+void mode1()
 {
   bool x = true;
   LED9 = 0;
-  //transmit("Mode 1", 6);
 
   while(x == true)
   {
     if(!SW1)  //C sound
     {
-	  x = play_note(C6, 1);
+			x = play_note(C6, 1);
     }
 
     else if(!SW2) //D sound
@@ -49,15 +52,21 @@ void mode1()  //plays random sound when button is pressed
     {
       x = play_note(E6, 1);
     }
-	else if (!SW9)
-	{
-	  x = 0;
-	}
+		else if (!SW9)
+		{
+			x = 0;
+		}
   }
 
   LED9 = 1;
 }
 
+/**********************************************************
+	* mode2
+	*	@desc		Operates mode 2 of the program:
+	*					Playing music stored in code memory
+	*					on button press
+**********************************************************/
 void mode2()
 {
 	bool x = true;
@@ -77,17 +86,13 @@ void mode2()
 		}
 		else if(SW2 == 0)
 		{
-		    setSevenSeg();
-            SSC = 0;
+		  setSevenSeg();
+      SSC = 0;
 			SSF = 0;
 
 			x = playSong(SORC);
 
 			clearSevenSeg();
-		}
-		else if (SW3 == 0)
-		{
-			x = playSong(POKE);
 		}
 		else if (SW9 == 0)
 		{
@@ -95,14 +100,21 @@ void mode2()
 		}
 	}
 
-    clearSevenSeg();
+  clearSevenSeg();
 	LED8 = 1;
 }
 
-//TODO: Decide if we need a 3rd mode
+/**********************************************************
+	* mode3
+	*	@desc		Operates mode 3 of the program:
+	*					Counter from 0 to F with rollover
+	*					(similar to project 1)
+	*					Output on the connected
+	*					7 segment display
+**********************************************************/
 void mode3()
 {
-  	bool x = true;
+  bool x = true;
 	bool y = true;
 	int count = 0;
 	
@@ -113,11 +125,11 @@ void mode3()
 		if(!SW1)
 		{
 			count++;
-	  	}
+	  }
 
 		if(!SW3)
 		{
-		    count--;
+		  count--;
 		}
 		
 		delay();
@@ -244,76 +256,91 @@ void mode3()
 			else if (count > 15)
 			{
 				count = 0;
-				x = play_note(C6, 8);
-				x = play_note(D6, 8);
-				x = play_note(E6, 8);
+				x = play_note(C6, 6);
+				x = play_note(E6, 6);
+				x = play_note(G6, 6);
+				x = play_note(C7, 6);
 			}
 
 			else if(count < 0)
 			{
-			    count = 15;
-				x = play_note(E6, 8);
-				x = play_note(D6, 8);
-				x = play_note(C6, 8);
+			  count = 15;
+				x = play_note(C7, 6);
+				x = play_note(G6, 6);
+				x = play_note(E6, 6);
+				x = play_note(C6, 6);
 			}
 		}
 
 		if(!SW2)
-			{
-			    y = true;
+		{
+			y = true;
 
-     			delay();
+   		delay();
 			clearSevenSeg();
-			    while(y)
-				{
-					SSA = 1;
-					y = smDelay();
-					if(!y)
-					  break;
-					SSA = 0;
-
-					SSB = 1;
-					y = smDelay();
-					if(!y)
-					  break;
-					SSB = 0;
-
-					SSC = 1;
-					y = smDelay();
-					if(!y)
-					  break;
-					SSC = 0;
-
-					SSD = 1;
-					y = smDelay();
-					if(!y)
-					  break;
-					SSD = 0;
-
-					SSE = 1;
-					y = smDelay();
-					if(!y)
-					  break;
-					SSE = 0;
-
-					SSF = 1;
-					y = smDelay();
-					if(!y)
-					  break;
-					SSF = 0;
-				}
+		  while(y)
+			{
+				SSA = 1;
+				y = smDelay();
+					
+				if(!y)
+					break;
+						
+				SSA = 0;
+				SSB = 1;
+				y = smDelay();
+						
+				if(!y)
+					break;
+					
+				SSB = 0;
+				SSC = 1;
+				y = smDelay();
+					
+				if(!y)
+					break;
+					
+				SSC = 0;
+				SSD = 1;
+				y = smDelay();
+					
+				if(!y)
+					break;
+					
+				SSD = 0;
+				SSE = 1;
+				y = smDelay();
+					
+				if(!y)
+					break;
+					
+				SSE = 0;
+				SSF = 1;
+				y = smDelay();
+					
+				if(!y)
+					break;
+			
+				SSF = 0;
 			}
+		}
 	}
 	
 	clearSevenSeg();
 	LED7 = 1;
 }
 
+/**********************************************************
+	* delay
+	*	@desc		A delay function, approximately
+	*					0.2 seconds. Also, works without
+	*					stopping timer 1 if running
+**********************************************************/
 void delay()
 {
 	char i = 0;
 
-    TMOD = TMOD & 0xf0;
+  TMOD = TMOD & 0xf0;
 	TMOD = TMOD | 0x01;
 	TH0 = 0x00;
 	TL0 = 0x00;
@@ -328,6 +355,11 @@ void delay()
   return;
 }
 
+/**********************************************************
+	* setSevenSeg
+	*	@desc		Turns on all segments
+	*					on the seven segment display
+**********************************************************/
 void setSevenSeg()
 {
 	SSA = 1;
@@ -341,6 +373,11 @@ void setSevenSeg()
 	return;
 }
 
+/**********************************************************
+	* clearSevenSeg
+	*	@desc		Turns off all segments
+	*					on the seven segment display
+**********************************************************/
 void clearSevenSeg()
 {
 	SSA = 0;
@@ -354,40 +391,64 @@ void clearSevenSeg()
 	return;
 }
 
+/**********************************************************
+	* Pattern
+	*	@desc		Timer 1 interrupt, for use
+	*					during mode 2, to generate
+	*					a simple light pattern while
+	*					playing the song,
+	*					with a .2 second delay
+	*					between pattern changes
+**********************************************************/
 void Pattern() interrupt 3
 {
 	static bool current = 0;
-	TF1 = 0;
-	switch (current)
+	static unsigned char x = 0;
+	if (x == 0)
 	{
-		case 0:
-			LED1 = 0;
-			LED2 = 1;
-			LED3 = 0;
-			LED4 = 1;
-			LED5 = 0;
-			LED6 = 1;
-			LED7 = 0;
-			LED8 = 1;
-			LED9 = 0;
-			current = 1;
-			break;
+		TF1 = 0;
+		switch (current)
+		{
+			case 0:
+				LED1 = 0;
+				LED2 = 1;
+				LED3 = 0;
+				LED4 = 1;
+				LED5 = 0;
+				LED6 = 1;
+				LED7 = 0;
+				LED8 = 1;
+				LED9 = 0;
+				current = 1;
+				break;
 		
-		case 1:
-			LED1 = 1;
-			LED2 = 0;
-			LED3 = 1;
-			LED4 = 0;
-			LED5 = 1;
-			LED6 = 0;
-			LED7 = 1;
-			LED8 = 0;
-			LED9 = 1;
-			current = 0;
-			break;
+			case 1:
+				LED1 = 1;
+				LED2 = 0;
+				LED3 = 1;
+				LED4 = 0;
+				LED5 = 1;
+				LED6 = 0;
+				LED7 = 1;
+				LED8 = 0;
+				LED9 = 1;
+				current = 0;
+				break;
+		}
+		x++;
+	}
+	else
+	{
+		x++;
+		x = x % 12;
 	}
 }
 
+/**********************************************************
+	* clearLED
+	*	@desc		Turns off all LED's
+	*					on the board
+**********************************************************/
 void clearLED()
 {
 	LED1 = 1;
@@ -401,6 +462,15 @@ void clearLED()
 	LED9 = 1;
 }
 
+/**********************************************************
+	* smDelay
+	*	@desc		Smaller delay function,
+	*					approximately  seconds
+**********************************************************/
+
+//TODO: Make this timer 1 friendly,
+// 			and find out the goal for this
+//			function's time delay
 bool smDelay()
 {
   int i;
@@ -413,7 +483,7 @@ bool smDelay()
   for(i = 0; i < 5; i++)
   {
     while(!TF0);  
-	TF0 = 0;
+		TF0 = 0;
   }
 
   if(!SW2)

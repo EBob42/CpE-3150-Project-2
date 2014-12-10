@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   PROJECT2CODE                                                      12/09/2014 18:05:24 PAGE 1   
+C51 COMPILER V9.53.0.0   PROJECT2CODE                                                      12/10/2014 10:49:40 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE PROJECT2CODE
@@ -9,46 +9,38 @@ line level    source
 
    1          #include "project2.h"
    2          
-   3          void test() interrupt 2
-   4          {
-   5   1        transmit("interrupt", 9);
-   6   1        return;
-   7   1      }
-   8          
-   9          
-  10          //TODO: Come up with the extra stuff we want to add
-  11          //      (each person decide stuff, we can probably
-  12          //      work together to make it happen).
-  13          void main()
-  14          {
-  15   1        P2M1 = 0;
-  16   1        P1M1 = 0;
-  17   1        P0M1 = 0;
-  18   1      
-  19   1        IEN0 = 0x88;
-  20   1        
-  21   1        transmit("song 1", 6);
-  22   1        transmit("song 2", 6);
-  23   1      
-  24   1        //playSong(STAR);
-  25   1      
-  26   1        while(1)
-  27   1        {
-  28   2          mode1();
-  29   2            delay();
-  30   2      
-  31   2          mode2();
-  32   2          delay();
-  33   2      
-  34   2          mode3();
-  35   2          delay();
-  36   2        }
-  37   1      }
+   3          //TODO: Come up with the extra stuff we want to add
+   4          //      (each person decide stuff, we can probably
+   5          //      work together to make it happen).
+   6          void main()
+   7          {
+   8   1        P2M1 = 0;
+   9   1        P1M1 = 0;
+  10   1        P0M1 = 0;
+  11   1        clearSevenSeg();
+  12   1        
+  13   1        IEN0 = 0x88;
+  14   1        
+  15   1        transmit("song 1", 6);
+  16   1        transmit("song 2", 6);
+  17   1      
+  18   1        while(1)
+  19   1        {
+  20   2          mode1();
+  21   2            delay();
+  22   2      
+  23   2          mode2();
+  24   2          delay();
+  25   2      
+  26   2          mode3();
+  27   2          delay();
+  28   2        }
+  29   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    124    ----
-   CONSTANT SIZE    =     24    ----
+   CODE SIZE        =     59    ----
+   CONSTANT SIZE    =     14    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
