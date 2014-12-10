@@ -16,10 +16,6 @@ void main()
   P1M1 = 0;
   P0M1 = 0;
 
-  EA = 1;
-  EX0 = 1;
-  EX1 = 1;
-
   transmit("song 1", 6);
   transmit("song 2", 6);
 
