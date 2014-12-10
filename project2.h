@@ -54,7 +54,7 @@ sbit SW9 = P2^2;
 	*	@param1 String to be sent serially
 	*	@param2 Size of the string to be sent
 **********************************************************/
-void transmit(char msg[], char size);
+void transmit(unsigned char msg[], unsigned char size);
 
 /**********************************************************
 	* mode1

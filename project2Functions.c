@@ -7,9 +7,9 @@
 	*	@param1 String to be sent serially
 	*	@param2 Size of the string to be sent
 **********************************************************/
-void transmit(char msg[], char size)
+void transmit(unsigned char msg[], unsigned char size)
 {
-  char i = 0;
+  unsigned char i = 0;
 
   uart_init();
 

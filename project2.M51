@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        12/10/2014  16:46:48  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        12/10/2014  16:54:51  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -57,13 +57,13 @@ LINK MAP OF MODULE:  project2 (PROJECT2CODE)
             CODE    0E44H     0056H     UNIT         ?PR?PATTERN?PROJECT2FUNCTIONS
             CODE    0E9AH     0055H     UNIT         ?PR?_PLAYSONG?MUSIC
             CODE    0EEFH     0046H     UNIT         ?PR?MODE2?PROJECT2FUNCTIONS
-            CODE    0F35H     0044H     UNIT         ?PR?_TRANSMIT?PROJECT2FUNCTIONS
-            CODE    0F79H     0044H     UNIT         ?C?LDIV
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 2
+            CODE    0F35H     0044H     UNIT         ?C?LDIV
+            CODE    0F79H     003CH     UNIT         ?PR?UART_INIT?UART
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 2
 
 
-            CODE    0FBDH     003CH     UNIT         ?PR?UART_INIT?UART
-            CODE    0FF9H     0007H     UNIT         ?C_INITSEG
+            CODE    0FB5H     003AH     UNIT         ?PR?_TRANSMIT?PROJECT2FUNCTIONS
+            CODE    0FEFH     000FH     UNIT         ?PR?SETSEVENSEG?PROJECT2FUNCTIONS
 
 
 
@@ -119,7 +119,7 @@ SEGMENT                                       DATA_GROUP
 ?PR?_UPDATECOUNT?PROJECT2FUNCTIONS          000BH    0001H
   +--> ?PR?SETSEVENSEG?PROJECT2FUNCTIONS
   +--> ?PR?CLEARSEVENSEG?PROJECT2FUNCTIONS
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 3
 
 
   +--> ?PR?_PLAY_NOTE?MUSIC
@@ -135,21 +135,21 @@ IGNORED SEGMENTS:
    ?PR?PLAY_SMALL_DELAY?MUSIC
    ?PR?MODE1?PROJECT2FUNCTIONS
    ?PR?DELAY?PROJECT2FUNCTIONS
-   ?PR?SETSEVENSEG?PROJECT2FUNCTIONS
    ?PR?CLEARSEVENSEG?PROJECT2FUNCTIONS
    ?PR?CLEARLED?PROJECT2FUNCTIONS
    ?PR?SMDELAY?PROJECT2FUNCTIONS
+   ?C_INITSEG
 
 
 
 IGNORED SYMBOLS:
+   ?C_INITSEGSTART
    CLEARLED
    CLEARSEVENSEG
    DELAY
    MAIN
    MODE1
    PLAY_SMALL_DELAY
-   SETSEVENSEG
    SMDELAY
    UART_GET
    UART_ISR
@@ -179,7 +179,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   D:00B8H         PUBLIC        IP0
   D:00C8H         PUBLIC        TCR20
   D:00D8H         PUBLIC        I2CON
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 4
 
 
   D:00D0H         PUBLIC        PSW
@@ -228,7 +228,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   D:00BDH         PUBLIC        BRGCON
   D:00B8H         PUBLIC        IP0
   D:00C8H         PUBLIC        TCR20
-  C:0FBDH         PUBLIC        uart_init
+  C:0F79H         PUBLIC        uart_init
   D:00D8H         PUBLIC        I2CON
   D:00BEH         PUBLIC        BRGR0
   D:00BFH         PUBLIC        BRGR1
@@ -239,32 +239,32 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   -------         PROC          UART_INIT
   -------         DO            
   D:0004H         SYMBOL        BRG_Val
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 5
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 5
 
 
   -------         ENDDO         
-  C:0FBDH         LINE#         31
-  C:0FBDH         LINE#         32
-  C:0FBDH         LINE#         36
-  C:0FC0H         LINE#         39
-  C:0FC3H         LINE#         41
-  C:0FC6H         LINE#         45
-  C:0FC9H         LINE#         48
-  C:0FCCH         LINE#         51
-  C:0FCEH         LINE#         52
-  C:0FD5H         LINE#         53
-  C:0FD8H         LINE#         54
-  C:0FDAH         LINE#         55
-  C:0FDFH         LINE#         56
-  C:0FE2H         LINE#         59
-  C:0FE5H         LINE#         60
-  C:0FE8H         LINE#         61
-  C:0FEBH         LINE#         62
-  C:0FEEH         LINE#         65
-  C:0FF0H         LINE#         68
-  C:0FF3H         LINE#         69
-  C:0FF6H         LINE#         71
-  C:0FF8H         LINE#         73
+  C:0F79H         LINE#         31
+  C:0F79H         LINE#         32
+  C:0F79H         LINE#         36
+  C:0F7CH         LINE#         39
+  C:0F7FH         LINE#         41
+  C:0F82H         LINE#         45
+  C:0F85H         LINE#         48
+  C:0F88H         LINE#         51
+  C:0F8AH         LINE#         52
+  C:0F91H         LINE#         53
+  C:0F94H         LINE#         54
+  C:0F96H         LINE#         55
+  C:0F9BH         LINE#         56
+  C:0F9EH         LINE#         59
+  C:0FA1H         LINE#         60
+  C:0FA4H         LINE#         61
+  C:0FA7H         LINE#         62
+  C:0FAAH         LINE#         65
+  C:0FACH         LINE#         68
+  C:0FAFH         LINE#         69
+  C:0FB2H         LINE#         71
+  C:0FB4H         LINE#         73
   -------         ENDPROC       UART_INIT
   -------         PROC          UART_ISR
   C:0000H         LINE#         81
@@ -299,7 +299,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   -------         MODULE        MUSIC
   C:0000H         SYMBOL        _ICE_DUMMY_
   C:09E9H         PUBLIC        star_hz
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 6
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 6
 
 
   D:0080H         PUBLIC        P0
@@ -359,7 +359,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   -------         PROC          _PLAY_SONG
   D:0009H         SYMBOL        hz
   D:000CH         SYMBOL        dur
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 7
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 7
 
 
   D:000FH         SYMBOL        length
@@ -419,7 +419,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   C:0DC8H         LINE#         115
   C:0DCBH         LINE#         116
   C:0DCEH         LINE#         117
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 8
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 8
 
 
   C:0DCEH         LINE#         118
@@ -479,7 +479,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   C:0EEFH         PUBLIC        mode2
   C:0C52H         PUBLIC        mode3
   B:00A0H.0       PUBLIC        SW1
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 9
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 9
 
 
   B:0080H.2       PUBLIC        SW2
@@ -495,8 +495,8 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   B:0090H.4       PUBLIC        SSE
   B:0080H.3       PUBLIC        SSF
   B:0080H.1       PUBLIC        SSG
-  C:0000H         PUBLIC        setSevenSeg
-  C:0F35H         PUBLIC        _transmit
+  C:0FEFH         PUBLIC        setSevenSeg
+  C:0FB5H         PUBLIC        _transmit
   D:00D0H         PUBLIC        PSW
   -------         PROC          _TRANSMIT
   D:0009H         SYMBOL        msg
@@ -504,17 +504,17 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   -------         DO            
   D:000DH         SYMBOL        i
   -------         ENDDO         
-  C:0F35H         LINE#         10
-  C:0F3DH         LINE#         11
-  C:0F3DH         LINE#         12
-  C:0F40H         LINE#         14
-  C:0F43H         LINE#         16
-  C:0F53H         LINE#         17
-  C:0F53H         LINE#         18
-  C:0F6AH         LINE#         19
-  C:0F6EH         LINE#         20
-  C:0F73H         LINE#         21
-  C:0F78H         LINE#         24
+  C:0FB5H         LINE#         10
+  C:0FBDH         LINE#         11
+  C:0FBDH         LINE#         12
+  C:0FC0H         LINE#         14
+  C:0FC3H         LINE#         16
+  C:0FCDH         LINE#         17
+  C:0FCDH         LINE#         18
+  C:0FE0H         LINE#         19
+  C:0FE4H         LINE#         20
+  C:0FE9H         LINE#         21
+  C:0FEEH         LINE#         24
   -------         ENDPROC       _TRANSMIT
   -------         PROC          MODE1
   -------         DO            
@@ -539,7 +539,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   C:0020H         LINE#         51
   C:0029H         LINE#         52
   C:002BH         LINE#         53
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 10
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 10
 
 
   C:002EH         LINE#         54
@@ -599,7 +599,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   C:0C5BH         LINE#         119
   C:0C5DH         LINE#         121
   C:0C64H         LINE#         122
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 11
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 11
 
 
   C:0C64H         LINE#         123
@@ -659,7 +659,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   C:0CE1H         LINE#         194
   C:0CE1H         LINE#         196
   C:0CE4H         LINE#         197
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 12
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 12
 
 
   C:0CE6H         LINE#         198
@@ -685,16 +685,16 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   C:0019H         LINE#         223
   -------         ENDPROC       DELAY
   -------         PROC          SETSEVENSEG
-  C:0000H         LINE#         230
-  C:0000H         LINE#         231
-  C:0000H         LINE#         232
-  C:0002H         LINE#         233
-  C:0004H         LINE#         234
-  C:0006H         LINE#         235
-  C:0008H         LINE#         236
-  C:000AH         LINE#         237
-  C:000CH         LINE#         238
-  C:000EH         LINE#         241
+  C:0FEFH         LINE#         230
+  C:0FEFH         LINE#         231
+  C:0FEFH         LINE#         232
+  C:0FF1H         LINE#         233
+  C:0FF3H         LINE#         234
+  C:0FF5H         LINE#         235
+  C:0FF7H         LINE#         236
+  C:0FF9H         LINE#         237
+  C:0FFBH         LINE#         238
+  C:0FFDH         LINE#         241
   -------         ENDPROC       SETSEVENSEG
   -------         PROC          CLEARSEVENSEG
   C:0000H         LINE#         248
@@ -719,7 +719,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   C:0E4EH         LINE#         276
   C:0E50H         LINE#         277
   C:0E58H         LINE#         278
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 13
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 13
 
 
   C:0E58H         LINE#         279
@@ -779,7 +779,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   C:0000H         LINE#         342
   C:0003H         LINE#         343
   C:0006H         LINE#         344
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 14
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 14
 
 
   C:0009H         LINE#         345
@@ -839,7 +839,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   C:0B80H         LINE#         411
   C:0B80H         LINE#         412
   C:0B80H         LINE#         413
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 15
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 15
 
 
   C:0B80H         LINE#         414
@@ -899,7 +899,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   C:0BF5H         LINE#         477
   C:0BF6H         LINE#         479
   C:0BFDH         LINE#         480
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 16
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 16
 
 
   C:0BFDH         LINE#         481
@@ -941,7 +941,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
   -------         ENDMOD        ?C?LMUL
 
   -------         MODULE        ?C?SLDIV
-  C:0F79H         PUBLIC        ?C?SLDIV
+  C:0F35H         PUBLIC        ?C?SLDIV
   -------         ENDMOD        ?C?SLDIV
 
   -------         MODULE        ?C?ULDIV
@@ -959,7 +959,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
     LENGTH:  0034H
 
 *** ERROR L107: ADDRESS SPACE OVERFLOW
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 17
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 17
 
 
     SPACE:   CODE    
@@ -983,11 +983,6 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
 
 *** ERROR L107: ADDRESS SPACE OVERFLOW
     SPACE:   CODE    
-    SEGMENT: ?PR?SETSEVENSEG?PROJECT2FUNCTIONS
-    LENGTH:  000FH
-
-*** ERROR L107: ADDRESS SPACE OVERFLOW
-    SPACE:   CODE    
     SEGMENT: ?PR?CLEARSEVENSEG?PROJECT2FUNCTIONS
     LENGTH:  000FH
 
@@ -1008,6 +1003,11 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
 
 *** ERROR L107: ADDRESS SPACE OVERFLOW
     SPACE:   CODE    
+    SEGMENT: ?C_INITSEG
+    LENGTH:  0007H
+
+*** ERROR L107: ADDRESS SPACE OVERFLOW
+    SPACE:   CODE    
     SEGMENT: ?PR?UART_GET?UART
     LENGTH:  0003H
 
@@ -1019,7 +1019,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
     SEGMENT: ?CO?PROJECT2CODE
     MODULE:  Project2Code.obj (PROJECT2CODE)
 
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 18
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 18
 
 
 *** ERROR L120: CONTENT BELONGS TO ERRONEOUS SEGMENT
@@ -1079,7 +1079,7 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
 *** ERROR L120: CONTENT BELONGS TO ERRONEOUS SEGMENT
     SEGMENT: ?PR?UART_GET?UART
     MODULE:  uart.obj (UART)
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 19
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 19
 
 
 
@@ -1114,10 +1114,6 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
     SEGMENT: ?PR?CLEARSEVENSEG?PROJECT2FUNCTIONS
 
 *** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
-    SYMBOL:  SETSEVENSEG
-    SEGMENT: ?PR?SETSEVENSEG?PROJECT2FUNCTIONS
-
-*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
     SYMBOL:  DELAY
     SEGMENT: ?PR?DELAY?PROJECT2FUNCTIONS
 
@@ -1125,21 +1121,25 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
     SYMBOL:  MODE1
     SEGMENT: ?PR?MODE1?PROJECT2FUNCTIONS
 
-*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
-    SYMBOL:  _UART_TRANSMIT
+*** ERROR L120: CONTENT BELONGS TO ERRONEOUS SEGMENT
+    SEGMENT: ?C_INITSEG
     MODULE:  project2Functions.obj (PROJECT2FUNCTIONS)
-    ADDRESS: 0F68H
 
 *** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
     SYMBOL:  _UART_TRANSMIT
     MODULE:  project2Functions.obj (PROJECT2FUNCTIONS)
-    ADDRESS: 0F71H
+    ADDRESS: 0FDEH
 
 *** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
     SYMBOL:  _UART_TRANSMIT
     MODULE:  project2Functions.obj (PROJECT2FUNCTIONS)
-    ADDRESS: 0F76H
-BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:46:48  PAGE 20
+    ADDRESS: 0FE7H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  _UART_TRANSMIT
+    MODULE:  project2Functions.obj (PROJECT2FUNCTIONS)
+    ADDRESS: 0FECH
+BL51 BANKED LINKER/LOCATER V6.22                                                      12/10/2014  16:54:51  PAGE 20
 
 
 
@@ -1157,10 +1157,6 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
 
 *** ERROR L120: CONTENT BELONGS TO ERRONEOUS SEGMENT
     SEGMENT: ?PR?DELAY?PROJECT2FUNCTIONS
-    MODULE:  project2Functions.obj (PROJECT2FUNCTIONS)
-
-*** ERROR L120: CONTENT BELONGS TO ERRONEOUS SEGMENT
-    SEGMENT: ?PR?SETSEVENSEG?PROJECT2FUNCTIONS
     MODULE:  project2Functions.obj (PROJECT2FUNCTIONS)
 
 *** ERROR L120: CONTENT BELONGS TO ERRONEOUS SEGMENT
@@ -1184,9 +1180,18 @@ SYMBOL TABLE OF MODULE:  project2 (PROJECT2CODE)
     MODULE:  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
     ADDRESS: 0CF4H
 
+*** ERROR L119: REFERENCE MADE TO ERRONEOUS SEGMENT
+    SEGMENT: ?C_C51STARTUP
+    MODULE:  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+    ADDRESS: 0D2FH
+
+*** ERROR L120: CONTENT BELONGS TO ERRONEOUS SEGMENT
+    SEGMENT: ?C_INITSEG
+    MODULE:  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0660H BYTE (79%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0656H BYTE (79%) *
 ******************************************************************************
 
-Program Size: data=22.1 xdata=0 code=2333
-LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  50 ERROR(S)
+Program Size: data=22.1 xdata=0 code=2323
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  51 ERROR(S)
