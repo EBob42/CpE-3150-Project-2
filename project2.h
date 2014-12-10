@@ -43,7 +43,7 @@ sbit SW3 = P2^1;
 //sbit SW4 = P0^1;
 //sbit SW5 = P1^4;
 //sbit SW6 = P0^3;
-//sbit SW7 = P2^3;
+sbit SW7 = P2^3;
 //sbit SW8 = P0^0;
 sbit SW9 = P2^2;
 

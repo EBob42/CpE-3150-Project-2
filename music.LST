@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 10:49:40 PAGE 1   
+C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:19:35 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE MUSIC
@@ -9,114 +9,162 @@ line level    source
 
    1          #include "project2.h"
    2          
-   3          code unsigned int star_hz[42] = {F5, F5, F5, BF5, F6, EF6, D6, C6, BF6, F6, EF6, D6, C6, BF6, F6, EF6, D6,
+   3          /**********************************************************
+   4            * Star Wars theme arrays
+   5          **********************************************************/
+   6          code unsigned int star_hz[42] = {F5, F5, F5, BF5, F6, EF6, D6, C6, BF6, F6, EF6, D6, C6, BF6, F6, EF6, D6,
              - EF6, C6, F5, F5, F5, BF5, F6, EF6, D6, C6, BF6, F6, EF6, D6, C6, BF6, F6, C7, BF6, A6, BF6, BF5, BF5, BF5, BF5};
-   4          code unsigned char star_dur[42] = {E3, E3, E3, H, H, E3, E3, E3, H, Q, E3, E3, E3, H, Q, E3, E3, E3, H, E3
+   7          code unsigned char star_dur[42] = {E3, E3, E3, H, H, E3, E3, E3, H, Q, E3, E3, E3, H, Q, E3, E3, E3, H, E3
              -, E3, E3, H, H, E3, E3, E3, H, Q, E3, E3, E3, H, Q, E3, E3, E3, Q, E3, E3, E3, Q};
-   5          code char star_name[9] = "Star Wars";
-   6          
-   7          code unsigned int sorc_hz[57] = {F5, C6, C5, D5, E5, F5, AF5, F5, AF5, G5, F5, E5, F5, AF5, F5, AF5, G5, F
+   8          code char star_name[9] = "Star Wars";
+   9          
+  10          /**********************************************************
+  11            * Sorceror's Apprentice theme arrays
+  12          **********************************************************/
+  13          code unsigned int sorc_hz[57] = {F5, C6, C5, D5, E5, F5, AF5, F5, AF5, G5, F5, E5, F5, AF5, F5, AF5, G5, F
              -5, E5, F5, AF5, F5, AF5, G5, F5, G5, AF5, G5, BF5, AF5, G5, B5, F5, AF5, G5, BF5, AF5, G5, B5, F5, AF5, BF5, C6, C6, C6,
              - C6, D6, E6, F6, E6, F6, G6, C6, D6, E6, F6, F5};
-   8          code unsigned char sorc_dur[57] = {DQ, DQ, E, E, E, Q, E, Q, E, E, E, E, Q, E, Q, E, E, E, E, Q, E, E, E, 
+  14          code unsigned char sorc_dur[57] = {DQ, DQ, E, E, E, Q, E, Q, E, E, E, E, Q, E, Q, E, E, E, E, Q, E, E, E, 
              -E, E, E, E, E, E, E, Q, E, Q, E, E, E, E, Q, E, E, E, E, E, E, E, E, E, E, E, E, E, DQ, E, E, E, DQ, DQ};
-   9          code char sorc_name[21] = "Sorceror's Apprentice";
-  10            
-  11          code unsigned char notes[2] = {42, 57};
-  12          
-  13          bool playSong(Song s)
-  14          {
-  15   1        bool x = true;
-  16   1        switch (s)
-  17   1        {
-  18   2          case STAR:
-  19   2            transmit(star_name, 9);
-  20   2            x = play_song(star_hz, star_dur, notes[0]);
-  21   2            break;
-  22   2            
-  23   2          case SORC:
-  24   2            transmit(sorc_name, 21);
-  25   2            x = play_song(sorc_hz, sorc_dur, notes[1]);
-  26   2            break;
-  27   2        }
-  28   1        return x;
-  29   1      }
-  30          
-  31          bool play_song(unsigned int hz[], unsigned char dur[], unsigned char length)
-  32          {
-  33   1        unsigned char i;
-  34   1        bool x;
-  35   1        
-  36   1        TMOD = 0x10;
-  37   1        TH1 = 0x00;
-  38   1        TL1 = 0x00;
-  39   1        TR1 = 1;
-  40   1        
-  41   1        for (i = 0; i < length; ++i)
-  42   1        {
-  43   2          play_small_delay();
-  44   2          x = play_note(hz[i], dur[i]);
-  45   2          if (x == false)
-  46   2          {
-  47   3            IEN0 = 0x00;
-  48   3            TR1 = 0;
-  49   3            clearLED();
-  50   3            return false;
-C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 10:49:40 PAGE 2   
+  15          code char sorc_name[21] = "Sorceror's Apprentice";
+  16          
+  17          /**********************************************************
+  18            * Length of songs
+  19          **********************************************************/
+  20          code unsigned char notes[2] = {42, 57};
+  21          
+  22          /**********************************************************
+  23            * playSong
+  24            * @desc   Plays the selected song
+  25            *
+  26            * @param1 The song to be played
+  27          **********************************************************/
+  28          bool playSong(Song s)
+  29          {
+  30   1        bool x = true;
+  31   1        switch (s)
+  32   1        {
+  33   2          case STAR:
+  34   2            transmit(star_name, 9);
+  35   2            x = play_song(star_hz, star_dur, notes[0]);
+  36   2            break;
+  37   2            
+  38   2          case SORC:
+  39   2            transmit(sorc_name, 21);
+  40   2            x = play_song(sorc_hz, sorc_dur, notes[1]);
+  41   2            break;
+  42   2        }
+  43   1        return x;
+  44   1      }
+  45          
+  46          /**********************************************************
+  47            * play_song
+  48            * @desc   Plays the song corresponding to the arrays given
+  49            *
+  50            * @param1 Array of frequencies
+C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:19:35 PAGE 2   
 
-  51   3          }
-  52   2        }
-  53   1        
-  54   1        TR1 = 0;
-  55   1        IEN0 = 0x00;
-  56   1        clearLED();
-  57   1        return true;
-  58   1      }
-  59          
-  60          bool play_note(unsigned int hz, unsigned char dur)
-  61          {
-  62   1        unsigned int i, time;
-  63   1        unsigned char high, low;
+  51            * @param2 Array of note durations
+  52            * @param3 Number of notes in the song
+  53          **********************************************************/
+  54          bool play_song(unsigned int hz[], unsigned char dur[], unsigned char length)
+  55          {
+  56   1        unsigned char i;
+  57   1        bool x;
+  58   1        
+  59   1        EA = 1;
+  60   1        TMOD = 0x10;
+  61   1        TH1 = 0x00;
+  62   1        TL1 = 0x00;
+  63   1        TR1 = 1;
   64   1        
-  65   1        time = hz * dur / 18;
-  66   1        i = 0xFFFF - 61425 / hz*30 + 1;
-  67   1        high = i / 256;
-  68   1        low = i % 256;
-  69   1        
-  70   1        TMOD = TMOD & 0xf0;
-  71   1        TMOD = TMOD | 0x01;
-  72   1        
-  73   1        for (i = 0; i < time; ++i)
-  74   1        {
-  75   2          TH0 = high;
-  76   2          TL0 = low;
-  77   2          TR0 = 1;
-  78   2          while (TF0 == 0)
-  79   2          {
-  80   3            if(SW9 == 0)
-  81   3              return false;
-  82   3          }
-  83   2          TR0 = 0;
-  84   2          TF0 = 0;
-  85   2          SPK = ~SPK;
-  86   2        }
-  87   1        return true;
-  88   1      }
-  89          
-  90          void play_small_delay()
-  91          {
-  92   1        TMOD = TMOD & 0xf0;
-  93   1        TMOD = TMOD | 0x02;
-  94   1        TH0 = 0x00;
-  95   1        TR0 = 1;
-  96   1        while(TF0 == 0);
-  97   1        TR0 = 0;
-  98   1        TF0 = 0;
-  99   1      }
+  65   1        for (i = 0; i < length; ++i)
+  66   1        {
+  67   2          play_small_delay();
+  68   2          x = play_note(hz[i], dur[i]);
+  69   2          if (x == false)
+  70   2          {
+  71   3            IEN0 = 0x00;
+  72   3            TR1 = 0;
+  73   3            clearLED();
+  74   3            EA = 0;
+  75   3            return false;
+  76   3          }
+  77   2        }
+  78   1        
+  79   1        TR1 = 0;
+  80   1        IEN0 = 0x00;
+  81   1        clearLED();
+  82   1        EA = 0;
+  83   1        return true;
+  84   1      }
+  85          
+  86          /**********************************************************
+  87            * play_note
+  88            * @desc   Plays a note at the given frequency
+  89            *         with the given duration.
+  90            *         Also has a pseudo-interrupt (with polling)
+  91            *         for switching modes during the note
+  92            *
+  93            * @param1 Frequency of the note
+  94            * @param2 Duration of the note in 18ths of
+  95            *         a second
+  96          **********************************************************/
+  97          bool play_note(unsigned int hz, unsigned char dur)
+  98          {
+  99   1        unsigned int i, time;
+ 100   1        unsigned char high, low;
+ 101   1        
+ 102   1        time = hz * dur / 18;
+ 103   1        i = 0xFFFF - 61425 / hz*30 + 1;
+ 104   1        high = i / 256;
+ 105   1        low = i % 256;
+ 106   1        
+ 107   1        TMOD = TMOD & 0xf0;
+ 108   1        TMOD = TMOD | 0x01;
+ 109   1        
+ 110   1        for (i = 0; i < time; ++i)
+ 111   1        {
+ 112   2          TH0 = high;
+C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 16:19:35 PAGE 3   
+
+ 113   2          TL0 = low;
+ 114   2          TR0 = 1;
+ 115   2          while (TF0 == 0)
+ 116   2          {
+ 117   3            if(SW9 == 0)
+ 118   3              return false;
+ 119   3          }
+ 120   2          TR0 = 0;
+ 121   2          TF0 = 0;
+ 122   2          SPK = ~SPK;
+ 123   2        }
+ 124   1        return true;
+ 125   1      }
+ 126          
+ 127          /**********************************************************
+ 128            * play_small_delay
+ 129            * @desc   Very short delay function
+ 130            *         to distinguish between notes
+ 131            *         of the song, especially
+ 132            *         repeated notes of the same
+ 133            *         frequency
+ 134          **********************************************************/
+ 135          void play_small_delay()
+ 136          {
+ 137   1        TMOD = TMOD & 0xf0;
+ 138   1        TMOD = TMOD | 0x01;
+ 139   1        TH0 = 0x00;
+ 140   1        TL0 = 0x00;
+ 141   1        TR0 = 1;
+ 142   1        while(TF0 == 0);
+ 143   1        TR0 = 0;
+ 144   1        TF0 = 0;
+ 145   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    313    ----
+   CODE SIZE        =    321    ----
    CONSTANT SIZE    =    329    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

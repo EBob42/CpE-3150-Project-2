@@ -70,10 +70,10 @@ void mode1()
 void mode2()
 {
 	bool x = true;
-	LED8 = 0;
 	
 	while(x == true)
 	{
+		LED8 = 0;
 		if(SW1 == 0)
 		{			
 			clearSevenSeg();
@@ -467,20 +467,18 @@ void clearLED()
 	*	@desc		Smaller delay function,
 	*					approximately  seconds
 **********************************************************/
-
-//TODO: Make this timer 1 friendly,
-// 			and find out the goal for this
-//			function's time delay
 bool smDelay()
 {
   int i;
   bool x;
-
-  TMOD = 0x01;
-  TH0 = -255;
+	
+	TMOD = TMOD & 0xf0;
+	TMOD = TMOD | 0x01;
+  TH0 = 0;
+	TL0 = 0;
   TR0 = 1;
 
-  for(i = 0; i < 5; i++)
+  for(i = 0; i < 6; i++)
   {
     while(!TF0);  
 		TF0 = 0;

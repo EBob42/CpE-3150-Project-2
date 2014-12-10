@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   PROJECT2CODE                                                      12/10/2014 10:49:40 PAGE 1   
+C51 COMPILER V9.53.0.0   PROJECT2CODE                                                      12/10/2014 16:09:46 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE PROJECT2CODE
@@ -9,33 +9,34 @@ line level    source
 
    1          #include "project2.h"
    2          
-   3          //TODO: Come up with the extra stuff we want to add
-   4          //      (each person decide stuff, we can probably
-   5          //      work together to make it happen).
-   6          void main()
-   7          {
-   8   1        P2M1 = 0;
-   9   1        P1M1 = 0;
-  10   1        P0M1 = 0;
-  11   1        clearSevenSeg();
-  12   1        
-  13   1        IEN0 = 0x88;
-  14   1        
-  15   1        transmit("song 1", 6);
-  16   1        transmit("song 2", 6);
-  17   1      
-  18   1        while(1)
-  19   1        {
-  20   2          mode1();
-  21   2            delay();
-  22   2      
-  23   2          mode2();
-  24   2          delay();
-  25   2      
-  26   2          mode3();
-  27   2          delay();
-  28   2        }
-  29   1      }
+   3          /*****************************************************
+   4            * main
+   5            * @desc Primary running of the program
+   6            ***************************************************/
+   7          void main()
+   8          {
+   9   1        P2M1 = 0;
+  10   1        P1M1 = 0;
+  11   1        P0M1 = 0;
+  12   1        clearSevenSeg();
+  13   1        
+  14   1        IEN0 = 0x88;
+  15   1        
+  16   1        transmit("song 1", 6);
+  17   1        transmit("song 2", 6);
+  18   1      
+  19   1        while(1)
+  20   1        {
+  21   2          mode1();
+  22   2            delay();
+  23   2      
+  24   2          mode2();
+  25   2          delay();
+  26   2      
+  27   2          mode3();
+  28   2          delay();
+  29   2        }
+  30   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
