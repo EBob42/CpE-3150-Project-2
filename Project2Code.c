@@ -16,6 +16,8 @@ void main()
   P1M1 = 0;
   P0M1 = 0;
 
+	IEN0 = 0x88;
+	
   transmit("song 1", 6);
   transmit("song 2", 6);
 

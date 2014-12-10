@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   PROJECT2CODE                                                      12/09/2014 17:43:54 PAGE 1   
+C51 COMPILER V9.53.0.0   PROJECT2CODE                                                      12/09/2014 18:05:24 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE PROJECT2CODE
@@ -21,42 +21,37 @@ line level    source
   12          //      work together to make it happen).
   13          void main()
   14          {
-  15   1        int mode = 0;
-  16   1        P2M1 = 0;
-  17   1        P1M1 = 0;
-  18   1        P0M1 = 0;
-  19   1      
-  20   1        EA = 1;
-  21   1        EX0 = 1;
-  22   1        EX1 = 1;
+  15   1        P2M1 = 0;
+  16   1        P1M1 = 0;
+  17   1        P0M1 = 0;
+  18   1      
+  19   1        IEN0 = 0x88;
+  20   1        
+  21   1        transmit("song 1", 6);
+  22   1        transmit("song 2", 6);
   23   1      
-  24   1        transmit("song 1", 6);
-  25   1        transmit("song 2", 6);
-  26   1      
-  27   1        //playSong(STAR);
-  28   1      
-  29   1        while(1)
-  30   1        {
-  31   2          mode = mode1(mode);
-  32   2            delay();
+  24   1        //playSong(STAR);
+  25   1      
+  26   1        while(1)
+  27   1        {
+  28   2          mode1();
+  29   2            delay();
+  30   2      
+  31   2          mode2();
+  32   2          delay();
   33   2      
-  34   2          mode = mode2(mode);
+  34   2          mode3();
   35   2          delay();
-  36   2      
-  37   2          mode = mode3(mode);
-  38   2          delay();
-  39   2      
-  40   2          mode = 0;
-  41   2        }
-  42   1      }
+  36   2        }
+  37   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    160    ----
+   CODE SIZE        =    124    ----
    CONSTANT SIZE    =     24    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----       2
+   DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

@@ -56,8 +56,6 @@ void mode1()  //plays random sound when button is pressed
   }
 
   LED9 = 1;
-
-  return mode + 1;
 }
 
 void mode2()
@@ -86,8 +84,6 @@ void mode2()
 	}
 
 	LED8 = 1;
-	
-	return mode + 1;
 }
 
 //TODO: Decide if we need a 3rd mode
@@ -234,8 +230,6 @@ void mode3()
 	
 	clearSevenSeg();
 	LED3 = 1;
-	
-	return mode + 1;
 }
 
 void delay()
