@@ -11,19 +11,17 @@ void main()
   P0M1 = 0;
   clearSevenSeg();
 	
-	uart_init();
-	
-  transmit("song 1", 6);
-  transmit("song 2", 6);
-
   while(1)
   {
+		transmit("Keyboard", 8);
 		mode1();
 	  delay();
 
+		transmit("Play Songs", 10);
 		mode2();
 		delay();
 
+		transmit("Counter", 7);
 		mode3();
 		delay();
   }

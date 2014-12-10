@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:08:35 PAGE 1   
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:33:25 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE PROJECT2FUNCTIONS
@@ -20,511 +20,530 @@ line level    source
   11          {
   12   1        unsigned char i = 0;
   13   1      
-  14   1        for(i = 0; i < size; i++)
-  15   1        {
-  16   2          uart_transmit(msg[i]);
-  17   2        }
-  18   1        uart_transmit('\n');
-  19   1        uart_transmit('\0');
-  20   1        
-  21   1        return;
-  22   1      }
-  23          
-  24          /**********************************************************
-  25            * mode1
-  26            * @desc   Operates mode 1 of the program:
-  27            *         Playing sounds on button press,
-  28            *         similar to a keyboard
-  29          **********************************************************/
-  30          void mode1()
-  31          {
-  32   1        bool x = true;
-  33   1        LED9 = 0;
-  34   1      
-  35   1        while(x == true)
-  36   1        {
-  37   2          if(!SW1)  //C sound
-  38   2          {
-  39   3            x = play_note(C6, 1);
-  40   3          }
-  41   2      
-  42   2          else if(!SW2) //D sound
+  14   1        uart_init();
+  15   1        EA = 1;
+  16   1        
+  17   1        for(i = 0; i < size; i++)
+  18   1        {
+  19   2          uart_transmit(msg[i]);
+  20   2        }
+  21   1        uart_transmit('\n');
+  22   1        uart_transmit('\0');
+  23   1        
+  24   1        EA = 0;
+  25   1        
+  26   1        return;
+  27   1      }
+  28          
+  29          /**********************************************************
+  30            * mode1
+  31            * @desc   Operates mode 1 of the program:
+  32            *         Playing sounds on button press,
+  33            *         similar to a keyboard
+  34          **********************************************************/
+  35          void mode1()
+  36          {
+  37   1        bool x = true;
+  38   1        LED9 = 0;
+  39   1      
+  40   1        while(x == true)
+  41   1        {
+  42   2          if(!SW1)  //C sound
   43   2          {
-  44   3            x = play_note(D6, 1);
-  45   3          }
-  46   2      
-  47   2          else if(!SW3) //E sound
-  48   2          {
-  49   3            x = play_note(E6, 1);
+  44   3            setSevenSeg();
+  45   3            SSB = 0;
+  46   3            SSC = 0;
+  47   3            SSG = 0;
+  48   3            x = play_note(C6, 1);
+  49   3            clearSevenSeg();
   50   3          }
-  51   2          else if (!SW9)
-  52   2          {
-  53   3            x = 0;
-  54   3          }
-  55   2        }
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:08:35 PAGE 2   
+  51   2      
+  52   2          else if(!SW2) //D sound
+  53   2          {
+  54   3            setSevenSeg();
+  55   3            SSB = 0;
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:33:25 PAGE 2   
 
-  56   1      
-  57   1        LED9 = 1;
-  58   1      }
-  59          
-  60          /**********************************************************
-  61            * mode2
-  62            * @desc   Operates mode 2 of the program:
-  63            *         Playing music stored in code memory
-  64            *         on button press
-  65          **********************************************************/
-  66          void mode2()
-  67          {
-  68   1        bool x = true;
-  69   1        
-  70   1        while(x == true)
-  71   1        {
-  72   2          LED8 = 0;
-  73   2          if(SW1 == 0)
-  74   2          {     
-  75   3            clearSevenSeg();
-  76   3      
-  77   3            SSB = 1;
-  78   3            SSC = 1;
-  79   3            x = playSong(STAR);
-  80   3            SSB = 0;
-  81   3            SSC = 0;
-  82   3          }
-  83   2          else if(SW2 == 0)
-  84   2          {
-  85   3            setSevenSeg();
-  86   3            SSC = 0;
-  87   3            SSF = 0;
-  88   3      
-  89   3            x = playSong(SORC);
-  90   3      
-  91   3            clearSevenSeg();
-  92   3          }
-  93   2          else if (SW9 == 0)
-  94   2          {
-  95   3            x = false;
-  96   3          }
-  97   2        }
-  98   1      
-  99   1        clearSevenSeg();
- 100   1        LED8 = 1;
- 101   1      }
- 102          
- 103          /**********************************************************
- 104            * mode3
- 105            * @desc   Operates mode 3 of the program:
- 106            *         Counter from 0 to F with rollover
- 107            *         (similar to project 1)
- 108            *         Output on the connected
- 109            *         7 segment display
- 110          **********************************************************/
- 111          void mode3()
- 112          {
- 113   1        bool x = true;
- 114   1        bool y = true;
- 115   1        unsigned char count = 0;
- 116   1        
- 117   1        LED7 = 0;
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:08:35 PAGE 3   
+  56   3            SSC = 0;
+  57   3            x = play_note(D6, 1);
+  58   3            clearSevenSeg();
+  59   3          }
+  60   2      
+  61   2          else if(!SW3) //E sound
+  62   2          {
+  63   3            setSevenSeg();
+  64   3            SSB = 0;
+  65   3            SSC = 0;
+  66   3            SSD = 0;
+  67   3            x = play_note(E6, 1);
+  68   3            clearSevenSeg();
+  69   3          }
+  70   2          else if (!SW9)
+  71   2          {
+  72   3            x = 0;
+  73   3          }
+  74   2        }
+  75   1      
+  76   1        LED9 = 1;
+  77   1      }
+  78          
+  79          /**********************************************************
+  80            * mode2
+  81            * @desc   Operates mode 2 of the program:
+  82            *         Playing music stored in code memory
+  83            *         on button press
+  84          **********************************************************/
+  85          void mode2()
+  86          {
+  87   1        bool x = true;
+  88   1        
+  89   1        while(x == true)
+  90   1        {
+  91   2          LED8 = 0;
+  92   2          if(SW1 == 0)
+  93   2          {     
+  94   3            clearSevenSeg();
+  95   3      
+  96   3            SSB = 1;
+  97   3            SSC = 1;
+  98   3            x = playSong(STAR);
+  99   3            SSB = 0;
+ 100   3            SSC = 0;
+ 101   3          }
+ 102   2          else if(SW2 == 0)
+ 103   2          {
+ 104   3            setSevenSeg();
+ 105   3            SSC = 0;
+ 106   3            SSF = 0;
+ 107   3      
+ 108   3            x = playSong(SORC);
+ 109   3      
+ 110   3            clearSevenSeg();
+ 111   3          }
+ 112   2          else if (SW9 == 0)
+ 113   2          {
+ 114   3            x = false;
+ 115   3          }
+ 116   2        }
+ 117   1      
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:33:25 PAGE 3   
 
- 118   1        
- 119   1        while(x)
- 120   1        {
- 121   2          if(!SW1)
- 122   2          {
- 123   3            count++;
- 124   3            updateCount(count);
- 125   3          }
- 126   2      
- 127   2          if(!SW3)
- 128   2          {
- 129   3            count--;
- 130   3            updateCount(count);
- 131   3          }
- 132   2          
- 133   2          delay();
- 134   2          
- 135   2          if(SW9 == 0)
- 136   2          {
- 137   3            x = false;
- 138   3          }
- 139   2      
- 140   2          if(!SW2)
+ 118   1        clearSevenSeg();
+ 119   1        LED8 = 1;
+ 120   1      }
+ 121          
+ 122          /**********************************************************
+ 123            * mode3
+ 124            * @desc   Operates mode 3 of the program:
+ 125            *         Counter from 0 to F with rollover
+ 126            *         (similar to project 1)
+ 127            *         Output on the connected
+ 128            *         7 segment display
+ 129          **********************************************************/
+ 130          void mode3()
+ 131          {
+ 132   1        bool x = true;
+ 133   1        bool y = true;
+ 134   1        unsigned char count = 0;
+ 135   1        
+ 136   1        LED7 = 0;
+ 137   1        
+ 138   1        while(x)
+ 139   1        {
+ 140   2          if(!SW1)
  141   2          {
- 142   3            y = true;
- 143   3      
- 144   3            delay();
- 145   3            clearSevenSeg();
- 146   3            while(y)
- 147   3            {
- 148   4              SSA = 1;
- 149   4              y = smDelay();
- 150   4                
- 151   4              if(!y)
- 152   4                break;
- 153   4                  
- 154   4              SSA = 0;
- 155   4              SSB = 1;
- 156   4              y = smDelay();
- 157   4                  
- 158   4              if(!y)
- 159   4                break;
- 160   4                
- 161   4              SSB = 0;
- 162   4              SSC = 1;
- 163   4              y = smDelay();
- 164   4                
- 165   4              if(!y)
- 166   4                break;
- 167   4                
- 168   4              SSC = 0;
- 169   4              SSD = 1;
- 170   4              y = smDelay();
- 171   4                
- 172   4              if(!y)
- 173   4                break;
- 174   4                
- 175   4              SSD = 0;
- 176   4              SSE = 1;
- 177   4              y = smDelay();
- 178   4                
- 179   4              if(!y)
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:08:35 PAGE 4   
+ 142   3            count++;
+ 143   3            updateCount(count);
+ 144   3          }
+ 145   2      
+ 146   2          if(!SW3)
+ 147   2          {
+ 148   3            count--;
+ 149   3            updateCount(count);
+ 150   3          }
+ 151   2          
+ 152   2          delay();
+ 153   2          
+ 154   2          if(SW9 == 0)
+ 155   2          {
+ 156   3            x = false;
+ 157   3          }
+ 158   2      
+ 159   2          if(!SW2)
+ 160   2          {
+ 161   3            y = true;
+ 162   3      
+ 163   3            delay();
+ 164   3            clearSevenSeg();
+ 165   3            while(y)
+ 166   3            {
+ 167   4              SSA = 1;
+ 168   4              y = smDelay();
+ 169   4                
+ 170   4              if(!y)
+ 171   4                break;
+ 172   4                  
+ 173   4              SSA = 0;
+ 174   4              SSB = 1;
+ 175   4              y = smDelay();
+ 176   4                  
+ 177   4              if(!y)
+ 178   4                break;
+ 179   4                
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:33:25 PAGE 4   
 
- 180   4                break;
- 181   4                
- 182   4              SSE = 0;
- 183   4              SSF = 1;
- 184   4              y = smDelay();
- 185   4                
- 186   4              if(!y)
- 187   4                break;
- 188   4            
- 189   4              SSF = 0;
- 190   4            }
- 191   3          }
- 192   2        }
- 193   1        
- 194   1        clearSevenSeg();
- 195   1        LED7 = 1;
- 196   1      }
- 197          
- 198          /**********************************************************
- 199            * delay
- 200            * @desc   A delay function, approximately
- 201            *         0.2 seconds. Also, works without
- 202            *         stopping timer 1 if running
- 203          **********************************************************/
- 204          void delay()
- 205          {
- 206   1        char i = 0;
- 207   1      
- 208   1        TMOD = TMOD & 0xf0;
- 209   1        TMOD = TMOD | 0x01;
- 210   1        TH0 = 0x00;
- 211   1        TL0 = 0x00;
- 212   1        for(i = 0; i < 12; i++)
- 213   1        {
- 214   2          TR0 = 1;
- 215   2          while(TF0 == 0);
- 216   2          TR0 = 0;
- 217   2          TF0 = 0;
- 218   2        }
- 219   1      
- 220   1        return;
- 221   1      }
- 222          
- 223          /**********************************************************
- 224            * setSevenSeg
- 225            * @desc   Turns on all segments
- 226            *         on the seven segment display
- 227          **********************************************************/
- 228          void setSevenSeg()
- 229          {
- 230   1        SSA = 1;
- 231   1        SSB = 1;
- 232   1        SSC = 1;
- 233   1        SSD = 1;
- 234   1        SSE = 1;
- 235   1        SSF = 1;
- 236   1        SSG = 1;
- 237   1      
- 238   1        return;
- 239   1      }
- 240          
- 241          /**********************************************************
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:08:35 PAGE 5   
+ 180   4              SSB = 0;
+ 181   4              SSC = 1;
+ 182   4              y = smDelay();
+ 183   4                
+ 184   4              if(!y)
+ 185   4                break;
+ 186   4                
+ 187   4              SSC = 0;
+ 188   4              SSD = 1;
+ 189   4              y = smDelay();
+ 190   4                
+ 191   4              if(!y)
+ 192   4                break;
+ 193   4                
+ 194   4              SSD = 0;
+ 195   4              SSE = 1;
+ 196   4              y = smDelay();
+ 197   4                
+ 198   4              if(!y)
+ 199   4                break;
+ 200   4                
+ 201   4              SSE = 0;
+ 202   4              SSF = 1;
+ 203   4              y = smDelay();
+ 204   4                
+ 205   4              if(!y)
+ 206   4                break;
+ 207   4            
+ 208   4              SSF = 0;
+ 209   4            }
+ 210   3          }
+ 211   2        }
+ 212   1        
+ 213   1        clearSevenSeg();
+ 214   1        LED7 = 1;
+ 215   1      }
+ 216          
+ 217          /**********************************************************
+ 218            * delay
+ 219            * @desc   A delay function, approximately
+ 220            *         0.2 seconds. Also, works without
+ 221            *         stopping timer 1 if running
+ 222          **********************************************************/
+ 223          void delay()
+ 224          {
+ 225   1        char i = 0;
+ 226   1      
+ 227   1        TMOD = TMOD & 0xf0;
+ 228   1        TMOD = TMOD | 0x01;
+ 229   1        TH0 = 0x00;
+ 230   1        TL0 = 0x00;
+ 231   1        for(i = 0; i < 12; i++)
+ 232   1        {
+ 233   2          TR0 = 1;
+ 234   2          while(TF0 == 0);
+ 235   2          TR0 = 0;
+ 236   2          TF0 = 0;
+ 237   2        }
+ 238   1      
+ 239   1        return;
+ 240   1      }
+ 241          
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:33:25 PAGE 5   
 
- 242            * clearSevenSeg
- 243            * @desc   Turns off all segments
- 244            *         on the seven segment display
- 245          **********************************************************/
- 246          void clearSevenSeg()
- 247          {
- 248   1        SSA = 0;
- 249   1        SSB = 0;
- 250   1        SSC = 0;
- 251   1        SSD = 0;
- 252   1        SSE = 0;
- 253   1        SSF = 0;
- 254   1        SSG = 0;
- 255   1        
- 256   1        return;
- 257   1      }
- 258          
- 259          /**********************************************************
- 260            * Pattern
- 261            * @desc   Timer 1 interrupt, for use
- 262            *         during mode 2, to generate
- 263            *         a simple light pattern while
- 264            *         playing the song,
- 265            *         with a .2 second delay
- 266            *         between pattern changes
- 267          **********************************************************/
- 268          void Pattern() interrupt 3
- 269          {
- 270   1        static bool current = 0;
- 271   1        static unsigned char x = 0;
- 272   1        if (x == 0)
- 273   1        {
- 274   2          TF1 = 0;
- 275   2          switch (current)
- 276   2          {
- 277   3            case 0:
- 278   3              LED1 = 0;
- 279   3              LED2 = 1;
- 280   3              LED3 = 0;
- 281   3              LED4 = 1;
- 282   3              LED5 = 0;
- 283   3              LED6 = 1;
- 284   3              LED7 = 0;
- 285   3              LED8 = 1;
- 286   3              LED9 = 0;
- 287   3              current = 1;
- 288   3              break;
- 289   3          
- 290   3            case 1:
- 291   3              LED1 = 1;
- 292   3              LED2 = 0;
- 293   3              LED3 = 1;
- 294   3              LED4 = 0;
- 295   3              LED5 = 1;
- 296   3              LED6 = 0;
- 297   3              LED7 = 1;
- 298   3              LED8 = 0;
- 299   3              LED9 = 1;
- 300   3              current = 0;
- 301   3              break;
- 302   3          }
- 303   2          x++;
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:08:35 PAGE 6   
+ 242          /**********************************************************
+ 243            * setSevenSeg
+ 244            * @desc   Turns on all segments
+ 245            *         on the seven segment display
+ 246          **********************************************************/
+ 247          void setSevenSeg()
+ 248          {
+ 249   1        SSA = 1;
+ 250   1        SSB = 1;
+ 251   1        SSC = 1;
+ 252   1        SSD = 1;
+ 253   1        SSE = 1;
+ 254   1        SSF = 1;
+ 255   1        SSG = 1;
+ 256   1      
+ 257   1        return;
+ 258   1      }
+ 259          
+ 260          /**********************************************************
+ 261            * clearSevenSeg
+ 262            * @desc   Turns off all segments
+ 263            *         on the seven segment display
+ 264          **********************************************************/
+ 265          void clearSevenSeg()
+ 266          {
+ 267   1        SSA = 0;
+ 268   1        SSB = 0;
+ 269   1        SSC = 0;
+ 270   1        SSD = 0;
+ 271   1        SSE = 0;
+ 272   1        SSF = 0;
+ 273   1        SSG = 0;
+ 274   1        
+ 275   1        return;
+ 276   1      }
+ 277          
+ 278          /**********************************************************
+ 279            * Pattern
+ 280            * @desc   Timer 1 interrupt, for use
+ 281            *         during mode 2, to generate
+ 282            *         a simple light pattern while
+ 283            *         playing the song,
+ 284            *         with a .2 second delay
+ 285            *         between pattern changes
+ 286          **********************************************************/
+ 287          void Pattern() interrupt 3
+ 288          {
+ 289   1        static bool current = 0;
+ 290   1        static unsigned char x = 0;
+ 291   1        if (x == 0)
+ 292   1        {
+ 293   2          TF1 = 0;
+ 294   2          switch (current)
+ 295   2          {
+ 296   3            case 0:
+ 297   3              LED1 = 0;
+ 298   3              LED2 = 1;
+ 299   3              LED3 = 0;
+ 300   3              LED4 = 1;
+ 301   3              LED5 = 0;
+ 302   3              LED6 = 1;
+ 303   3              LED7 = 0;
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:33:25 PAGE 6   
 
- 304   2        }
- 305   1        else
- 306   1        {
- 307   2          x++;
- 308   2          x = x % 12;
- 309   2        }
- 310   1      }
- 311          
- 312          /**********************************************************
- 313            * clearLED
- 314            * @desc   Turns off all LED's
- 315            *         on the board
- 316          **********************************************************/
- 317          void clearLED()
- 318          {
- 319   1        LED1 = 1;
- 320   1        LED2 = 1;
- 321   1        LED3 = 1;
- 322   1        LED4 = 1;
- 323   1        LED5 = 1;
- 324   1        LED6 = 1;
- 325   1        LED7 = 1;
- 326   1        LED8 = 1;
- 327   1        LED9 = 1;
- 328   1      }
- 329          
- 330          /**********************************************************
- 331            * smDelay
- 332            * @desc   Smaller delay function,
- 333            *         approximately  seconds
- 334          **********************************************************/
- 335          bool smDelay()
- 336          {
- 337   1        int i;
- 338   1        bool x;
- 339   1        
- 340   1        TMOD = TMOD & 0xf0;
- 341   1        TMOD = TMOD | 0x01;
- 342   1        TH0 = 0;
- 343   1        TL0 = 0;
- 344   1        TR0 = 1;
- 345   1      
- 346   1        for(i = 0; i < 6; i++)
- 347   1        {
- 348   2          while(!TF0);  
- 349   2          TF0 = 0;
- 350   2        }
- 351   1      
- 352   1        if(!SW2)
- 353   1          x = false;
- 354   1        
- 355   1        return x;
- 356   1      }
- 357          
- 358          /**********************************************************
- 359            * updateCount
- 360            * @desc   Updates the seven segment display to
- 361            *         show the current count
- 362          **********************************************************/
- 363          void updateCount(unsigned char count)
- 364          {
- 365   1        if(count == 0)
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:08:35 PAGE 7   
+ 304   3              LED8 = 1;
+ 305   3              LED9 = 0;
+ 306   3              current = 1;
+ 307   3              break;
+ 308   3          
+ 309   3            case 1:
+ 310   3              LED1 = 1;
+ 311   3              LED2 = 0;
+ 312   3              LED3 = 1;
+ 313   3              LED4 = 0;
+ 314   3              LED5 = 1;
+ 315   3              LED6 = 0;
+ 316   3              LED7 = 1;
+ 317   3              LED8 = 0;
+ 318   3              LED9 = 1;
+ 319   3              current = 0;
+ 320   3              break;
+ 321   3          }
+ 322   2          x++;
+ 323   2        }
+ 324   1        else
+ 325   1        {
+ 326   2          x++;
+ 327   2          x = x % 12;
+ 328   2        }
+ 329   1      }
+ 330          
+ 331          /**********************************************************
+ 332            * clearLED
+ 333            * @desc   Turns off all LED's
+ 334            *         on the board
+ 335          **********************************************************/
+ 336          void clearLED()
+ 337          {
+ 338   1        LED1 = 1;
+ 339   1        LED2 = 1;
+ 340   1        LED3 = 1;
+ 341   1        LED4 = 1;
+ 342   1        LED5 = 1;
+ 343   1        LED6 = 1;
+ 344   1        LED7 = 1;
+ 345   1        LED8 = 1;
+ 346   1        LED9 = 1;
+ 347   1      }
+ 348          
+ 349          /**********************************************************
+ 350            * smDelay
+ 351            * @desc   Smaller delay function,
+ 352            *         approximately  seconds
+ 353          **********************************************************/
+ 354          bool smDelay()
+ 355          {
+ 356   1        int i;
+ 357   1        bool x;
+ 358   1        
+ 359   1        TMOD = TMOD & 0xf0;
+ 360   1        TMOD = TMOD | 0x01;
+ 361   1        TH0 = 0;
+ 362   1        TL0 = 0;
+ 363   1        TR0 = 1;
+ 364   1      
+ 365   1        for(i = 0; i < 6; i++)
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:33:25 PAGE 7   
 
  366   1        {
- 367   2          setSevenSeg();
- 368   2          SSG = 0;
+ 367   2          while(!TF0);  
+ 368   2          TF0 = 0;
  369   2        }
- 370   1          
- 371   1        else if (count == 1)
- 372   1        {
- 373   2          clearSevenSeg();
- 374   2          SSB = 1;
- 375   2          SSC = 1;
- 376   2        }
- 377   1        
- 378   1        else if (count == 2)
- 379   1        {
- 380   2          setSevenSeg();
- 381   2          SSC = 0;
- 382   2          SSF = 0;
- 383   2        }
- 384   1          
- 385   1        else if (count == 3)
- 386   1        {
- 387   2          setSevenSeg();
- 388   2          SSE = 0;
- 389   2          SSF = 0;
- 390   2        }
- 391   1            
- 392   1        else if (count == 4)
- 393   1        {
- 394   2          setSevenSeg();
- 395   2          SSA = 0;
- 396   2          SSD = 0;
- 397   2          SSE = 0;
- 398   2        }
- 399   1            
- 400   1        else if (count == 5)
- 401   1        {
- 402   2          setSevenSeg();
- 403   2          SSB = 0;
- 404   2          SSE = 0;
- 405   2        }
- 406   1            
- 407   1        else if (count == 6)
- 408   1        {
- 409   2          setSevenSeg();
- 410   2          SSA = 0;
- 411   2          SSB = 0;
- 412   2        }
- 413   1            
- 414   1        else if (count == 7)
- 415   1        {
- 416   2          clearSevenSeg();
- 417   2          SSA = 1;
- 418   2          SSB = 1;
- 419   2          SSC = 1;
- 420   2        }
- 421   1          
- 422   1        else if (count == 8)
- 423   1        {
- 424   2          setSevenSeg();
- 425   2        }
- 426   1        
- 427   1        else if (count == 9)
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:08:35 PAGE 8   
+ 370   1      
+ 371   1        if(!SW2)
+ 372   1          x = false;
+ 373   1        
+ 374   1        return x;
+ 375   1      }
+ 376          
+ 377          /**********************************************************
+ 378            * updateCount
+ 379            * @desc   Updates the seven segment display to
+ 380            *         show the current count
+ 381          **********************************************************/
+ 382          void updateCount(unsigned char count)
+ 383          {
+ 384   1        if(count == 0)
+ 385   1        {
+ 386   2          setSevenSeg();
+ 387   2          SSG = 0;
+ 388   2        }
+ 389   1          
+ 390   1        else if (count == 1)
+ 391   1        {
+ 392   2          clearSevenSeg();
+ 393   2          SSB = 1;
+ 394   2          SSC = 1;
+ 395   2        }
+ 396   1        
+ 397   1        else if (count == 2)
+ 398   1        {
+ 399   2          setSevenSeg();
+ 400   2          SSC = 0;
+ 401   2          SSF = 0;
+ 402   2        }
+ 403   1          
+ 404   1        else if (count == 3)
+ 405   1        {
+ 406   2          setSevenSeg();
+ 407   2          SSE = 0;
+ 408   2          SSF = 0;
+ 409   2        }
+ 410   1            
+ 411   1        else if (count == 4)
+ 412   1        {
+ 413   2          setSevenSeg();
+ 414   2          SSA = 0;
+ 415   2          SSD = 0;
+ 416   2          SSE = 0;
+ 417   2        }
+ 418   1            
+ 419   1        else if (count == 5)
+ 420   1        {
+ 421   2          setSevenSeg();
+ 422   2          SSB = 0;
+ 423   2          SSE = 0;
+ 424   2        }
+ 425   1            
+ 426   1        else if (count == 6)
+ 427   1        {
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:33:25 PAGE 8   
 
- 428   1        {
- 429   2          setSevenSeg();
- 430   2          SSD = 0;
- 431   2          SSE = 0;
- 432   2        }
- 433   1          
- 434   1        else if (count == 10)
- 435   1        {
- 436   2          setSevenSeg();
- 437   2          SSD = 0;
- 438   2        }
- 439   1            
- 440   1        else if (count == 11)
- 441   1        {
- 442   2          setSevenSeg();
- 443   2          SSA = 0;
- 444   2          SSB = 0;
- 445   2        }
- 446   1            
- 447   1        else if (count == 12)
- 448   1        {
- 449   2          setSevenSeg();
- 450   2          SSB = 0;
- 451   2          SSC = 0;
- 452   2          SSG = 0;
- 453   2        }
- 454   1            
- 455   1        else if (count == 13)
- 456   1        {
- 457   2          setSevenSeg();
- 458   2          SSA = 0;
- 459   2          SSF = 0;
- 460   2        }
- 461   1          
- 462   1        else if (count == 14)
- 463   1        {
- 464   2          setSevenSeg();
- 465   2          SSB = 0;
- 466   2          SSC = 0;
- 467   2        }
- 468   1            
- 469   1        else if (count == 15)
- 470   1        {
- 471   2          setSevenSeg();
- 472   2          SSB = 0;
- 473   2          SSC = 0;
- 474   2          SSD = 0;
- 475   2        }
- 476   1            
- 477   1        else if (count > 15)
- 478   1        {
- 479   2          count = 0;
- 480   2          play_note(C6, 6);
- 481   2          play_note(E6, 6);
- 482   2          play_note(G6, 6);
- 483   2          play_note(C7, 6);
- 484   2        }
- 485   1            
- 486   1        else if(count < 0)
- 487   1        {
- 488   2          count = 15;
- 489   2          play_note(C7, 6);
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:08:35 PAGE 9   
+ 428   2          setSevenSeg();
+ 429   2          SSA = 0;
+ 430   2          SSB = 0;
+ 431   2        }
+ 432   1            
+ 433   1        else if (count == 7)
+ 434   1        {
+ 435   2          clearSevenSeg();
+ 436   2          SSA = 1;
+ 437   2          SSB = 1;
+ 438   2          SSC = 1;
+ 439   2        }
+ 440   1          
+ 441   1        else if (count == 8)
+ 442   1        {
+ 443   2          setSevenSeg();
+ 444   2        }
+ 445   1        
+ 446   1        else if (count == 9)
+ 447   1        {
+ 448   2          setSevenSeg();
+ 449   2          SSD = 0;
+ 450   2          SSE = 0;
+ 451   2        }
+ 452   1          
+ 453   1        else if (count == 10)
+ 454   1        {
+ 455   2          setSevenSeg();
+ 456   2          SSD = 0;
+ 457   2        }
+ 458   1            
+ 459   1        else if (count == 11)
+ 460   1        {
+ 461   2          setSevenSeg();
+ 462   2          SSA = 0;
+ 463   2          SSB = 0;
+ 464   2        }
+ 465   1            
+ 466   1        else if (count == 12)
+ 467   1        {
+ 468   2          setSevenSeg();
+ 469   2          SSB = 0;
+ 470   2          SSC = 0;
+ 471   2          SSG = 0;
+ 472   2        }
+ 473   1            
+ 474   1        else if (count == 13)
+ 475   1        {
+ 476   2          setSevenSeg();
+ 477   2          SSA = 0;
+ 478   2          SSF = 0;
+ 479   2        }
+ 480   1          
+ 481   1        else if (count == 14)
+ 482   1        {
+ 483   2          setSevenSeg();
+ 484   2          SSB = 0;
+ 485   2          SSC = 0;
+ 486   2        }
+ 487   1            
+ 488   1        else if (count == 15)
+ 489   1        {
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 17:33:25 PAGE 9   
 
- 490   2          play_note(G6, 6);
- 491   2          play_note(E6, 6);
- 492   2          play_note(C6, 6);
- 493   2        }
- 494   1      }
+ 490   2          setSevenSeg();
+ 491   2          SSB = 0;
+ 492   2          SSC = 0;
+ 493   2          SSD = 0;
+ 494   2        }
+ 495   1            
+ 496   1        else if (count > 15)
+ 497   1        {
+ 498   2          count = 0;
+ 499   2          play_note(C6, 6);
+ 500   2          play_note(E6, 6);
+ 501   2          play_note(G6, 6);
+ 502   2          play_note(C7, 6);
+ 503   2        }
+ 504   1            
+ 505   1        else if(count < 0)
+ 506   1        {
+ 507   2          count = 15;
+ 508   2          play_note(C7, 6);
+ 509   2          play_note(G6, 6);
+ 510   2          play_note(E6, 6);
+ 511   2          play_note(C6, 6);
+ 512   2        }
+ 513   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    812    ----
+   CODE SIZE        =    853    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =      2      10
+   DATA SIZE        =      2      11
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

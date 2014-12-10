@@ -51,7 +51,7 @@ void uart_init
   AUXR1 |= 0x40;
 
   // configure baud rate generator
-  BRG_Val=(unsigned int)(OSC_FREQ/1200UL);
+  BRG_Val=(unsigned int)(OSC_FREQ/9600UL);
   BRG_Val=BRG_Val-16;
   BRGCON = 0x00;
   BRGR1 = BRG_Val>>8;

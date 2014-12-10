@@ -21,7 +21,7 @@ sbit LED9 = P2^6;
 /**********************************************************
 	* Seven Segment Display Declarations
 **********************************************************/
-sbit SSA = P1^0;
+sbit SSA = P2^5;
 sbit SSB = P2^4;
 sbit SSC = P2^3;
 sbit SSD = P0^0;

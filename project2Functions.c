@@ -11,6 +11,7 @@ void transmit(unsigned char msg[], unsigned char size)
 {
   unsigned char i = 0;
 
+	uart_init();
 	EA = 1;
 	
   for(i = 0; i < size; i++)
@@ -40,17 +41,31 @@ void mode1()
   {
     if(!SW1)  //C sound
     {
+			setSevenSeg();
+			SSB = 0;
+			SSC = 0;
+			SSG = 0;
 			x = play_note(C6, 1);
+			clearSevenSeg();
     }
 
     else if(!SW2) //D sound
     {
+			setSevenSeg();
+			SSB = 0;
+			SSC = 0;
       x = play_note(D6, 1);
+			clearSevenSeg();
     }
 
     else if(!SW3) //E sound
     {
+			setSevenSeg();
+			SSB = 0;
+			SSC = 0;
+			SSD = 0;
       x = play_note(E6, 1);
+			clearSevenSeg();
     }
 		else if (!SW9)
 		{

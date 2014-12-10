@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   PROJECT2CODE                                                      12/10/2014 17:08:35 PAGE 1   
+C51 COMPILER V9.53.0.0   PROJECT2CODE                                                      12/10/2014 17:33:24 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE PROJECT2CODE
@@ -20,30 +20,29 @@ line level    source
   11   1        P0M1 = 0;
   12   1        clearSevenSeg();
   13   1        
-  14   1        uart_init();
-  15   1        
-  16   1        EA = 1;
-  17   1        
-  18   1        transmit("song 1", 6);
-  19   1        transmit("song 2", 6);
-  20   1      
-  21   1        while(1)
-  22   1        {
-  23   2          mode1();
-  24   2          delay();
-  25   2      
-  26   2          mode2();
-  27   2          delay();
-  28   2      
-  29   2          mode3();
-  30   2          delay();
-  31   2        }
-  32   1      }
+  14   1        transmit("song 1", 6);
+  15   1        transmit("song 2", 6);
+  16   1      
+  17   1        while(1)
+  18   1        {
+  19   2          transmit("Keyboard", 8);
+  20   2          mode1();
+  21   2          delay();
+  22   2      
+  23   2          transmit("Play Songs", 10);
+  24   2          mode2();
+  25   2          delay();
+  26   2      
+  27   2          transmit("Counter", 7);
+  28   2          mode3();
+  29   2          delay();
+  30   2        }
+  31   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     57    ----
-   CONSTANT SIZE    =     14    ----
+   CODE SIZE        =     85    ----
+   CONSTANT SIZE    =     42    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
