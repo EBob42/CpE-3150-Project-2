@@ -135,17 +135,23 @@ void mode3()
 	
 	LED7 = 0;
 	
+	updateCount(count);
+	
 	while(x)
 	{
 		if(!SW1)
 		{
 			count++;
+			if(count == 16)
+				count = 0;
 			updateCount(count);
 	  }
 
 		if(!SW3)
 		{
 		  count--;
+			if(count == 255)
+				count = 15;
 			updateCount(count);
 		}
 		
@@ -207,6 +213,7 @@ void mode3()
 			
 				SSF = 0;
 			}
+			updateCount(count);
 		}
 	}
 	
