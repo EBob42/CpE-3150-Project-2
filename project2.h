@@ -16,23 +16,23 @@ sbit LED8 = P0^4;
 sbit LED9 = P2^6;
 
 sbit SSA = P1^0;
-sbit SSB = P1^1;
-sbit SSC = P1^2;
-sbit SSD = P1^3;
-sbit SSE = P1^5;
-sbit SSF = P3^0;
-sbit SSG = P3^1;
+sbit SSB = P2^4;
+sbit SSC = P2^3;
+sbit SSD = P0^0;
+sbit SSG = P0^1;
+sbit SSE = P1^4;
+sbit SSF = P0^3;
 
 sbit SPK = P1^7;
 
 sbit SW1 = P2^0;
 sbit SW2 = P0^2;
 sbit SW3 = P2^1;
-sbit SW4 = P0^1;
-sbit SW5 = P1^4;
-sbit SW6 = P0^3;
-sbit SW7 = P2^3;
-sbit SW8 = P0^0;
+//sbit SW4 = P0^1;
+//sbit SW5 = P1^4;
+//sbit SW6 = P0^3;
+//sbit SW7 = P2^3;
+//sbit SW8 = P0^0;
 sbit SW9 = P2^2;
 
 void transmit(char msg[], int size);
@@ -44,5 +44,6 @@ void setSevenSeg();
 void clearSevenSeg();
 void Pattern();
 void clearLED();
+bool smDelay();
 
 #endif
