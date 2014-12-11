@@ -1,3 +1,13 @@
+/*****************************************************
+	*	music.h
+	*
+	*	Header with preprocessor variable declarations
+	* and function declarations for the music
+	* functionality for project 2
+	*
+	*	Eric Hopkins, Dillion Klobe, Brandon Becker
+	***************************************************/
+
 #ifndef MUSIC_H
 #define MUSIC_H
 

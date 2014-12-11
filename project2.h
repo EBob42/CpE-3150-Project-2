@@ -1,3 +1,12 @@
+/*****************************************************
+	*	project2.h
+	*
+	*	Header with function prototypes and
+	* sbit declarations for project 2
+	*
+	*	Eric Hopkins, Dillion Klobe, Brandon Becker
+	***************************************************/
+
 #ifndef PROJECT_H
 #define PROJECT_H
 

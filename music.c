@@ -1,3 +1,12 @@
+/*****************************************************
+	*	music.c
+	*
+	*	Function definitions for the music functionality
+	* of project 2, functions declared in music.h
+	*
+	*	Eric Hopkins, Dillion Klobe, Brandon Becker
+	***************************************************/
+
 #include "project2.h"
 
 /**********************************************************

@@ -1,3 +1,12 @@
+/*****************************************************
+	*	project2Functions.c
+	*
+	*	Implementation of functions declared in
+	*	project2.h
+	*
+	*	Eric Hopkins, Dillion Klobe, Brandon Becker
+	***************************************************/
+
 #include "project2.h"
 
 /**********************************************************
