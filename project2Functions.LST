@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 18:18:11 PAGE 1   
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 22:18:21 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE PROJECT2FUNCTIONS
@@ -62,7 +62,7 @@ line level    source
   53   2          {
   54   3            setSevenSeg();
   55   3            SSA = 0;
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 18:18:11 PAGE 2   
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 22:18:21 PAGE 2   
 
   56   3            SSF = 0;
   57   3            x = play_note(D6, 1);
@@ -126,7 +126,7 @@ line level    source
  115   2        }
  116   1      
  117   1        clearSevenSeg();
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 18:18:11 PAGE 3   
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 22:18:21 PAGE 3   
 
  118   1        LED8 = 1;
  119   1      }
@@ -190,7 +190,7 @@ line level    source
  177   2      
  178   2          if(!SW2)
  179   2          {
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 18:18:11 PAGE 4   
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 22:18:21 PAGE 4   
 
  180   3            y = true;
  181   3      
@@ -251,10 +251,10 @@ line level    source
  236   4              adder = count;
  237   4              count = 0;
  238   4              updateCount(count);
- 239   4              adder = true;
+ 239   4              adding = true;
  240   4            }
  241   3            
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 18:18:11 PAGE 5   
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 22:18:21 PAGE 5   
 
  242   3            else
  243   3            {
@@ -265,7 +265,7 @@ line level    source
  248   5                play_note(B6, 1);
  249   5                play_note(E7, 7);
  250   5              }
- 251   4              adder = false;
+ 251   4              adding = false;
  252   4              updateCount(count);
  253   4            }
  254   3            
@@ -318,7 +318,7 @@ line level    source
  301   1        SSG = 1;
  302   1      
  303   1        return;
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 18:18:11 PAGE 6   
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 22:18:21 PAGE 6   
 
  304   1      }
  305          
@@ -382,7 +382,7 @@ line level    source
  363   3              LED8 = 0;
  364   3              LED9 = 1;
  365   3              current = 0;
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 18:18:11 PAGE 7   
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 22:18:21 PAGE 7   
 
  366   3              break;
  367   3          }
@@ -446,7 +446,7 @@ line level    source
  425            * @desc   Updates the seven segment display to
  426            *         show the current count
  427          **********************************************************/
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 18:18:11 PAGE 8   
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 22:18:21 PAGE 8   
 
  428          void updateCount(unsigned char count)
  429          {
@@ -490,70 +490,68 @@ line level    source
  467   2            
  468   2          case 6:
  469   2            setSevenSeg();
- 470   2            SSA = 0;
- 471   2            SSB = 0;
- 472   2            break;
- 473   2            
- 474   2          case 7:
- 475   2            clearSevenSeg();
- 476   2            SSA = 1;
- 477   2            SSB = 1;
- 478   2            SSC = 1;
- 479   2          
- 480   2          case 8:
- 481   2            setSevenSeg();
- 482   2            break;
- 483   2        
- 484   2          case 9:
- 485   2            setSevenSeg();
- 486   2            SSD = 0;
- 487   2            SSE = 0;
- 488   2            break;
- 489   2          
-C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 18:18:11 PAGE 9   
+ 470   2            SSB = 0;
+ 471   2            break;
+ 472   2            
+ 473   2          case 7:
+ 474   2            clearSevenSeg();
+ 475   2            SSA = 1;
+ 476   2            SSB = 1;
+ 477   2            SSC = 1;
+ 478   2          
+ 479   2          case 8:
+ 480   2            setSevenSeg();
+ 481   2            break;
+ 482   2        
+ 483   2          case 9:
+ 484   2            setSevenSeg();
+ 485   2            SSE = 0;
+ 486   2            break;
+ 487   2          
+ 488   2          case 10:
+ 489   2            setSevenSeg();
+C51 COMPILER V9.53.0.0   PROJECT2FUNCTIONS                                                 12/10/2014 22:18:21 PAGE 9   
 
- 490   2          case 10:
- 491   2            setSevenSeg();
- 492   2            SSD = 0;
- 493   2            break;
- 494   2            
- 495   2          case 11:
- 496   2            setSevenSeg();
- 497   2            SSA = 0;
- 498   2            SSB = 0;
- 499   2            break;
- 500   2            
- 501   2          case 12:
- 502   2            setSevenSeg();
- 503   2            SSB = 0;
- 504   2            SSC = 0;
- 505   2            SSG = 0;
- 506   2            break;
- 507   2            
- 508   2          case 13:
- 509   2            setSevenSeg();
- 510   2            SSA = 0;
- 511   2            SSF = 0;
- 512   2            break;
- 513   2          
- 514   2          case 14:
- 515   2            setSevenSeg();
- 516   2            SSB = 0;
- 517   2            SSC = 0;
- 518   2            break;
- 519   2            
- 520   2          case 15:
- 521   2            setSevenSeg();
- 522   2            SSB = 0;
- 523   2            SSC = 0;
- 524   2            SSD = 0;
- 525   2            break;
- 526   2        }
- 527   1      }
+ 490   2            SSD = 0;
+ 491   2            break;
+ 492   2            
+ 493   2          case 11:
+ 494   2            setSevenSeg();
+ 495   2            SSA = 0;
+ 496   2            SSB = 0;
+ 497   2            break;
+ 498   2            
+ 499   2          case 12:
+ 500   2            setSevenSeg();
+ 501   2            SSB = 0;
+ 502   2            SSC = 0;
+ 503   2            SSG = 0;
+ 504   2            break;
+ 505   2            
+ 506   2          case 13:
+ 507   2            setSevenSeg();
+ 508   2            SSA = 0;
+ 509   2            SSF = 0;
+ 510   2            break;
+ 511   2          
+ 512   2          case 14:
+ 513   2            setSevenSeg();
+ 514   2            SSB = 0;
+ 515   2            SSC = 0;
+ 516   2            break;
+ 517   2            
+ 518   2          case 15:
+ 519   2            setSevenSeg();
+ 520   2            SSB = 0;
+ 521   2            SSC = 0;
+ 522   2            SSD = 0;
+ 523   2            break;
+ 524   2        }
+ 525   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    915    ----
+   CODE SIZE        =    920    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
