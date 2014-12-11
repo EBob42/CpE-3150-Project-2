@@ -467,7 +467,6 @@ void updateCount(unsigned char count)
 			
 		case 6:
 			setSevenSeg();
-			SSA = 0;
 			SSB = 0;
 			break;
 			
@@ -483,7 +482,6 @@ void updateCount(unsigned char count)
 	
 		case 9:
 			setSevenSeg();
-			SSD = 0;
 			SSE = 0;
 			break;
 		
