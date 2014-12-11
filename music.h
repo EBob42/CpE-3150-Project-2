@@ -33,7 +33,9 @@
 #define G6 1568
 #define A6 1760
 #define BF6 1865
+#define B6 1979
 #define C7 2093
+#define E7 2637
 
 /**********************************************************
 	*	Allow for switch cases for which song to play

@@ -131,6 +131,8 @@ void mode3()
   bool x = true;
 	bool y = true;
 	unsigned char count = 0;
+	unsigned char adder;
+	bool adding = false;
 	
 	LED7 = 0;
 	
@@ -225,6 +227,27 @@ void mode3()
 				SSF = 0;
 			}
 			updateCount(count);
+		}
+		
+		if(!SW4)
+		{
+			if(adding == 0)
+			{
+				adder = count;
+				count = 0;
+				updateCount(count);
+			}
+			
+			else
+			{
+				count = adder + count;
+				if (count > 15)
+				{
+					count = count % 16;
+					play_note(B6, 1);
+					play_note(E7, 7);
+				}
+			}
 		}
 	}
 	
