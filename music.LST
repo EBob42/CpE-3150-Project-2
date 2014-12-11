@@ -1,4 +1,4 @@
-C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 18:11:43 PAGE 1   
+C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 18:18:11 PAGE 1   
 
 
 C51 COMPILER V9.53.0.0, COMPILATION OF MODULE MUSIC
@@ -62,7 +62,7 @@ line level    source
   48            * @desc   Plays the song corresponding to the arrays given
   49            *
   50            * @param1 Array of frequencies
-C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 18:11:43 PAGE 2   
+C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 18:18:11 PAGE 2   
 
   51            * @param2 Array of note durations
   52            * @param3 Number of notes in the song
@@ -126,7 +126,7 @@ line level    source
  110   2          TH0 = high;
  111   2          TL0 = low;
  112   2          TR0 = 1;
-C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 18:11:43 PAGE 3   
+C51 COMPILER V9.53.0.0   MUSIC                                                             12/10/2014 18:18:11 PAGE 3   
 
  113   2          while (TF0 == 0)
  114   2          {

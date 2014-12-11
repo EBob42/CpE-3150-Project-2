@@ -25,7 +25,7 @@ sbit SSA = P2^5;
 sbit SSB = P2^4;
 sbit SSC = P2^3;
 sbit SSD = P0^0;
-sbit SSG = P0^1;
+sbit SSG = P1^6;
 sbit SSE = P1^4;
 sbit SSF = P0^3;
 

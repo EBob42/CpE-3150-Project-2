@@ -236,6 +236,7 @@ void mode3()
 				adder = count;
 				count = 0;
 				updateCount(count);
+				adder = true;
 			}
 			
 			else
@@ -247,7 +248,11 @@ void mode3()
 					play_note(B6, 1);
 					play_note(E7, 7);
 				}
+				adder = false;
+				updateCount(count);
 			}
+			
+			delay();
 		}
 	}
 	
